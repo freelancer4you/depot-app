@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Horizontal form</div>
+	<div class="panel-body">
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label class="col-lg-2 control-label">Preis</label>
+				<div class="col-lg-10">
+					<input id="price" placeholder="Preis" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-2 control-label">Anzahl</label>
+				<div class="col-lg-10">
+					<input id="quantity" placeholder="Anzahl" class="form-control">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10">
+					<button 
+					   type="button" 
+					   class="btn btn-sm btn-default"
+					   onclick="javascript:de.goldmann.portfolio.ui.order.save(document.getElementById('price').value, document.getElementById('quantity').value)">Speichern</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

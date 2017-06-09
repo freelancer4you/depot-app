@@ -1,0 +1,126 @@
+   <!-- START Main wrapper-->
+   <div class="wrapper">
+      <!-- START Top Navbar-->
+      <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
+         <!-- START navbar header-->
+         <div class="navbar-header">
+            <a href="dashboard.html" class="navbar-brand">
+               <div class="brand-logo">
+                  <img src="app/img/logo.png" alt="App Logo" class="img-responsive">
+               </div>
+               <div class="brand-logo-collapsed">
+                  <img src="app/img/logo-single.png" alt="App Logo" class="img-responsive">
+               </div>
+            </a>
+         </div>
+         <!-- END navbar header-->
+         <!-- START Nav wrapper-->
+         <div class="nav-wrapper">
+            <!-- START Left navbar-->
+            <ul class="nav navbar-nav">
+               <li>
+                 
+                  <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
+                  <a href="#" data-toggle-state="aside-toggled" class="visible-xs">
+                     <em class="fa fa-navicon"></em>
+                  </a>
+               </li>
+               <!-- START Messages menu (dropdown-list)-->
+               
+               <!-- END Messages menu (dropdown-list)-->               
+            </ul>
+            <!-- END Left navbar-->
+            <!-- START Right Navbar-->
+            <ul class="nav navbar-nav navbar-right">
+               <li>
+					<a href="#!startView" onclick="javascript:de.goldmann.portfolio.logout();">
+	                     <em class="fa fa-power-off"></em>
+	                </a>                     
+               </li>
+            </ul>
+            <!-- END Right Navbar-->
+         </div>
+         <!-- END Nav wrapper-->
+         <!-- START Search form-->
+         <form role="search" class="navbar-form">
+            <div class="form-group has-feedback">
+               <input type="text" placeholder="Type and hit Enter.." class="form-control">
+               <div data-toggle="navbar-search-dismiss" class="fa fa-times form-control-feedback"></div>
+            </div>
+            <button type="submit" class="hidden btn btn-default">Submit</button>
+         </form>
+         <!-- END Search form-->
+      </nav>
+      <!-- END Top Navbar-->
+      <!-- START aside-->
+      <aside class="aside">
+         <!-- START Sidebar (left)-->
+         <nav class="sidebar">
+            <ul class="nav">
+               <!-- START Menu-->
+               <li class="nav-heading">Main</li>
+               <li class="active">
+                  <a href="#" title="Dashboard" data-toggle="collapse-next" class="has-submenu">
+                     <em class="fa fa-money"></em>
+                     <!-- div class="label label-primary pull-right">10</div-->
+                     <span class="item-text">Depots</span>
+                  </a>
+                  <!-- START SubMenu item-->                  
+                  <div location="depotList"></div>
+                  <!-- END SubMenu item-->
+               </li>
+               <li>
+                  <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
+                     <em class="fa fa-bell-o"></em>
+                     <span class="item-text">Alarme</span>
+                  </a>
+                  
+                   <!-- START SubMenu item-->                  
+                  <div location="alarmList"></div>
+                 
+               </li>
+               <li>
+                  <a href="#" title="Pages" data-toggle="collapse-next" class="has-submenu">
+                     <em class="fa fa-file-text-o"></em>
+                     <span class="item-text">Rebalancing</span>
+                  </a>
+                  <!-- START SubMenu item-->
+                  <ul class="nav collapse in">
+                     <li>
+                        <a href="pages/landing.html" title="Landing" data-toggle="" class="no-submenu">
+                           <span class="item-text">Depot 1</span>
+                        </a>
+                     </li>                     
+                  </ul>
+                  <!-- END SubMenu item-->
+               </li>
+              </ul>              
+         </nav>
+         <!-- END Sidebar (left)-->
+      </aside>
+      <!-- End aside-->
+      <!-- START aside-->
+      <aside class="offsidebar">
+         <!-- START Off Sidebar (right)-->
+         <nav>
+            <ul class="nav">
+              
+            </ul>
+         </nav>
+         <!-- END Off Sidebar (right)-->
+      </aside>
+      <!-- END aside-->
+      <!-- START Main section-->
+      <section>
+         <!-- START Page content-->
+         <div class="main-content">
+           <!-- button onclick="addDepotListEntry()">Test JS</button--> 
+           <div location="dynamicContent"></div>             
+         </div>
+         <!-- END Page content-->
+         <!-- START Page footer-->
+         <footer>&copy; 2014 - Wintermin</footer>
+         <!-- END Page Footer-->
+      </section>
+      <!-- END Main section-->
+   </div>

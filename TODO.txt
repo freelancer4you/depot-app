@@ -1,0 +1,19 @@
+http://www.handelsblatt.com/finanzen/maerkte/aktien/dividenden-aristokraten-ein-beachtlicher-ertrag/7271320-2.html
+http://www.handelsblatt.com/finanzen/maerkte/aktien/dax-mdax-tecdax-welche-aktien-zu-den-dividenden-aristokraten-zaehlen/7856036-2.html
+
+Flyer:
+	- Topic: Dividenden Aristokraten
+	- Stichworte: Aristokraten, Aktien, ETF, Money, Finance/Financial, Finanzielle Unabhängigkeit, Dividende, Rendite, Rebalancing
+- Auflistung aller Aristokraten nach Ländern/Börsen/KGV/Dividende/Rendite
+- TOP 10 Aristokraten
+- Alarme für Aristokraten
+- Empfehlungen für Aristokraten
+- News zu Aristokraten, von anderen Webseiten sammeln, in Spanisch übersetzen, dann auf Seite posten, bzw. an Nutzer senden
+- Bezahl-Optionen: 
+		- Alarme mehr als X müssen bezahlt werden
+		- Empfehlungen für Aristokraten
+		- Auflistung von maximal X Aristokraten oder aller Aristokraten
+		- Auflistung Klassen/Kategorien: Kategorie A: Aristokraten mit der höchsten Rendite, Kategorie B,C usw.
+		- Nutzung der Rebalancing-Funktion
+		- Anzeige der Rendite/Dividenden Historie
+		- Export des Rebalancing nach Excel

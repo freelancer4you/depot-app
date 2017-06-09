@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+
+		<div class="table-responsive">
+		    <table id="positionsTable" class="table table-hover table-bordered">
+		       <thead class="thead-inverse">
+		          <tr>
+		             <th>Positionen</th>
+		             <th>Geplanter Anteil in %</th>
+		             <th>Aktueller Wert in EUR</th>
+		             <th>&nbsp;</th>
+		          </tr>
+		       </thead>
+		       <tbody>
+		          <tr>
+		             <td>Risikoloser Teil(Bargeld)</td>
+		             <td><div location="cashPercentage" /></td>
+		             <td><div location="cashAmount" /></td>
+		             <td><button class="btn btn-success btn-xs"
+                         onclick="javascript:de.goldmann.portfolio.ui.rebalancing.editRiskFreePosition('');">Edit</button></td>
+		          </tr>		          
+		          <tr>
+		             <td><a href="">Aktien</a></td>
+		             <td><div location="stocksPercentage"></div></td>
+                     <td><div location="stocksAmount"></div></td>
+		             <td><button class="btn btn-success btn-xs"
+                         onclick="javascript:de.goldmann.portfolio.ui.rebalancing.editStocksPosition();">Edit</button></td>
+		          </tr>
+		          <tr>
+                     <td>&nbsp;</td>
+                     <td><div location="totalPercentage"></div></td>
+                     <td><div location="totalAmount" /></td>
+                     <td>&nbsp;</td>
+                  </tr>
+		       </tbody>
+		    </table>
+		 </div>
+
+		 <div class="table-responsive">
+		     <table class="table table-hover table-bordered">
+		       <thead>
+		          <tr>
+		             <th>Auswertung Gesamt</th>
+		             <th>Geplanter Anteil in %</th>
+		             <th>Aktueller Wert in EUR</th>
+		             <th>Aktueller Anteil in %</th>
+		             <th>Geplanter Wert in EUR</th>
+		             <th>TODO in EUR</th>
+		          </tr>
+		       </thead>
+		       <tbody>
+		          <tr>
+		             <td>Risikoloser Teil</td>
+		             <td><div id="c14" ></div></td>
+		             <td><div id="d14" ></div></td>
+		             <td><div id="e14" ></div></td>
+		             <td style="background-color: #1E90FF;"><div id="f14" ></div></td>
+		             <td style="background-color: #B22222;"><div id="g14" ></div></td>
+		          </tr>
+		          <tr>
+		             <td>Risikobehafteter Teil</td>
+		             <td><div id="c15" ></div></td>
+                     <td><div id="d15" ></div></td>
+                     <td><div id="e15" ></div></td>
+                     <td style="background-color: #1E90FF;"><div id="f15" ></div></td>
+                     <td style="background-color: #B22222;"><div id="g15" ></div></td>
+		          </tr>
+		          <tr>
+		             <td>&nbsp;</td>
+		             <td><div id="c16" ></div></td>
+                     <td><div id="d16" ></div></td>
+                     <td><div id="e16" ></div></td>
+                     <td style="background-color: #1E90FF;"><div id="f16" ></div></td>
+                     <td style="background-color: #B22222;"><div id="g16" ></div></td>
+		          </tr>		          
+		       </tbody>
+		    </table>
+		 </div>   
+ 
+        <div class="table-responsive">
+             <table id="depotAuswertungTable" class="table table-hover table-bordered">
+               <thead>
+                  <tr>
+                     <th>AUSWERTUNG DEPOT</th>
+                     <th>Geplanter Anteil in %</th>
+                     <th>Aktueller Wert in EUR</th>
+                     <th>Aktueller Anteil in %</th>
+                     <th>Geplanter Wert in EUR</th>
+                     <th>TODO Depot in EUR</th>
+                     <th>TODO gesamt in EUR</th>
+                  </tr>
+               </thead>
+               <tbody>
+                            
+               </tbody>
+            </table>
+         </div>   
+    </div>
+ </div>

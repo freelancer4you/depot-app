@@ -1,0 +1,21 @@
+- Rebalancing gegen 0 auf allen Positionen
+- Genau analysieren, welcher Werte 
+	- Global Select Dividend
+	- LYXOR UC.ETF MSCI EM C EO (FR0010429068)
+	- und SPDR S&P EURO DIVIDEND ARISTOCRATS
+enthalten
+--> die derzeit gekauften Einzelaktien (Aristokraten), sollten nach Möglichkeit in keinem der 3 ETFs vorkommen,
+wenn doch, sollte diese Position möglichst gering sein, 
+für andere Positionen, also Positionen, die nicht in den ETFs vorkommen, entsprechend höhere Anteile einkaufen
+- weitere Aristokraten kaufen bzw. suchen und kaufen
+- Tool schreiben, 
+	- dass die Aristokraten prüft und bei Erreichen eines Werte Aufforderung zum Kaufen versendet
+	- dass KGV, Dividende und Rendite der Aristokraten regelmäßig prüft
+	- sollte außerdem die Preise der ETFs überwachen und entsprechend Aufforderung zum Kaufen versenden
+	- Preise für Kauf/Verkauf einer Position sollte über Datei bzw. über Oberfläche konfigurierbar sein
+	- Verkauf (nur Aristokraten): wenn eine Position das erreichte Limit von beispielsweise 200€ deutlich überschritten hat (z.B. 350€),
+	dann Aufforderung zum Verkauf
+
+
+ 
+

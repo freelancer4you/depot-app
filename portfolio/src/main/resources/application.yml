@@ -1,0 +1,50 @@
+server:
+    port: 9000
+    session.timeout: 300
+    context-path: /portfolio
+spring:
+  main:
+     web-environment: true
+  mail:
+      host: smtp.strato.de
+      password: ENC(a4RmqdcQHOe1MXpaK3bDv6d35W1Witay)
+      username: info@andre-goldmann.de
+      port: 465
+      from: info@computing-for-kids.de
+      subject: Portfolio-Monitor
+      to: goldi23@freenet.de        
+logging:
+  level:
+    com.ulisesbocchio.jasyptspringboot: WARN
+    org.springframework.security: debug
+    org.hibernate.SQL: WARN
+    org.hibernate.type.descriptor.sql.BasicBinder: WARN              
+---
+
+spring:
+    profiles: development
+    h2.console.enabled: true
+server:
+    port: 8080 
+---
+
+spring:
+    profiles: production
+#    datasource:
+#      driver-class-name: com.mysql.jdbc.Driver 
+#      url:  jdbc:mysql://localhost:3306/portfolio
+#      username: portfolio
+#      password:  ENC(0rLh75nem1Q2ZK74T6Vq+IZmyy/a3Gyj)
+#    jpa:
+#      database-platform: org.hibernate.dialect.MySQL5Dialect
+#      show-sql:  false
+#      hibernate:
+#        ddl-auto: update     
+server:
+    port: 9000
+   
+
+# We don't want Vaadin's heart beat signal to keep the session alive
+#vaadin.servlet.close-idle-sessions=true
+# The session timeout should be a multiple of the heartbeat interval
+#vaadin.servlet.heartbeat-interval=15      
