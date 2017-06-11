@@ -28,13 +28,20 @@ public class YahooFinanceServiceImpl extends AbstractYahooFinanceService {
         final Set<String> isinsMonitored = monitorEventRepo.loadSearchKeys();
         isinsWithinDepot.addAll(isinsMonitored);
 
-        final Map<String, Stock> loadStocks = requestStocks(
-                isinsWithinDepot.toArray(new String[isinsWithinDepot.size()])
-                );
-        final Iterator<Entry<String, Stock>> it = loadStocks.entrySet().iterator();
-        while (it.hasNext()) {
-            final Entry<String, Stock> entry = it.next();
-            yahooStocks.put(entry.getKey(), entry.getValue());
+        if (!isinsWithinDepot.isEmpty())
+        {
+            final Map<String, Stock> loadStocks = requestStocks(
+                    isinsWithinDepot.toArray(new String[isinsWithinDepot.size()]));
+            final Iterator<Entry<String, Stock>> it = loadStocks.entrySet().iterator();
+            while (it.hasNext())
+            {
+                final Entry<String, Stock> entry = it.next();
+                yahooStocks.put(entry.getKey(), entry.getValue());
+            }
+        }
+        else
+        {
+            LOGGER.warn("Keine Einträge in der Datenbank!");
         }
     }
 
@@ -46,26 +53,19 @@ public class YahooFinanceServiceImpl extends AbstractYahooFinanceService {
     private Map<String, Stock> requestStocks(final String[] symbols) throws IOException {
         Objects.requireNonNull(symbols, "symbols");
 
-        try {
+        try
+        {
             return YahooFinance.get(symbols);
         }
-        catch (final Exception e) {
+        catch (final Exception e)
+        {
             final StringBuilder symbolsBuffer = new StringBuilder();
-            for (final String symbol : symbols) {
+            for (final String symbol : symbols)
+            {
                 symbolsBuffer.append(symbol + ";");
             }
             LOGGER.error("Fehler beim Lesen der Stock-Daten:" + symbolsBuffer, e);
             throw e;
         }
     }
-
-    // @Override
-    // public double getTotalAmount(final String[] symbols) throws IOException {
-    //
-    // final Map<String, Stock> stocks = requestStocks(symbols);
-    //
-    //
-    // return 0.0;
-    // }
-
 }

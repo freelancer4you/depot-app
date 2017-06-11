@@ -117,14 +117,14 @@ insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (14, 
 insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (15, 19, 'HK0941009539', false, 1);--'AKTIE' China Mobile
 
 --ETFs
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (16, 3, 'DE000A0H0785', false, 1, 32);--'ETF' iShare Euro Gov
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (17, 40, 'FR0010429068', false, 1, 8);--'ETF' LYXOR
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (18, 10, 'LU0489337690', false, 1, 2);--'ETF' DB X-T.FTSE
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (19, 3, 'IE00B66F4759', false, 1, 32);--'ETF' iShare Euro High Yield
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (20, 14, 'IE00B5M1WJ87', false, 1, 17);--'ETF' SPDR Dividend Aristocrats
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (21, 6, 'IE00B6YX5M31', false, 1, 32);-- 'ETF' SPDR Barclays  
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (22, 24, 'LU0942970103', false, 1, 32);--'ETF' Barclay Global Aggregate Bond
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (23, 0,'DE000A0F5UH1', false, 1, 22);--'ETF' IShare Global Select Dividend
+insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (116, 3, 'DE000A0H0785', false, 1, 32);--'ETF' iShare Euro Gov
+insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (117, 40, 'FR0010429068', false, 1, 8);--'ETF' LYXOR
+insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (118, 10, 'LU0489337690', false, 1, 2);--'ETF' DB X-T.FTSE
+insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (119, 3, 'IE00B66F4759', false, 1, 32);--'ETF' iShare Euro High Yield
+insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (120, 14, 'IE00B5M1WJ87', false, 1, 17);--'ETF' SPDR Dividend Aristocrats
+insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (121, 6, 'IE00B6YX5M31', false, 1, 32);-- 'ETF' SPDR Barclays  
+insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (122, 24, 'LU0942970103', false, 1, 32);--'ETF' Barclay Global Aggregate Bond
+insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (123, 0,'DE000A0F5UH1', false, 1, 22);--'ETF' IShare Global Select Dividend
 
 
 -- -############################################# Depot  -#############################################
@@ -277,7 +277,7 @@ insert into monitorevent(id,stockdata_isin,comment,pricelimit,pricelimitDirectio
 insert into monitorevent(id,stockdata_isin,comment,pricelimit,pricelimitDirection,greated, humanuser_id) values(null,'GB0005405286','Kaufen',5.5,'UNDERCUTTED','2016-10-10', 2);
 
 --FREENET
-insert into monitorevent(id,stockdata_isin,comment,pricelimit,pricelimitDirection,greated, humanuser_id) values(null,'DE000A0Z2ZZ5','Kaufen',5.5,'UNDERCUTTED','2016-10-10', 2);
+insert into monitorevent(id,stockdata_isin,comment,pricelimit,pricelimitDirection,greated, humanuser_id) values(null,'DE000A0Z2ZZ5','Kaufen',23,'UNDERCUTTED','2016-10-10', 2);
 
 --Deutsche Post
-insert into monitorevent(id,stockdata_isin,comment,pricelimit,pricelimitDirection,greated, humanuser_id) values(null,'DE0005552004','Kaufen',22.0,'UNDERCUTTED','2016-10-10', 2);
+insert into monitorevent(id,stockdata_isin,comment,pricelimit,pricelimitDirection,greated, humanuser_id) values(null,'DE0005552004','Kaufen',25.0,'UNDERCUTTED','2016-10-10', 2);

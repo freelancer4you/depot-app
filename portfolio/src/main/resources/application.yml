@@ -16,7 +16,7 @@ spring:
 logging:
   level:
     com.ulisesbocchio.jasyptspringboot: WARN
-    org.springframework.security: debug
+    org.springframework.security: WARN
     org.hibernate.SQL: WARN
     org.hibernate.type.descriptor.sql.BasicBinder: WARN              
 ---
@@ -37,8 +37,15 @@ spring:
 #      password:  ENC(0rLh75nem1Q2ZK74T6Vq+IZmyy/a3Gyj)
 #    jpa:
 #      database-platform: org.hibernate.dialect.MySQL5Dialect
+#      show-sql:  false       
+#       driver-class-name: org.h2.Driver 
+#       url:  jdbc:h2:file:./data/sample
+#      username: portfolio
+#      password:  ENC(0rLh75nem1Q2ZK74T6Vq+IZmyy/a3Gyj)
+#    jpa:
+#       database-platform: org.hibernate.dialect.H2Dialect
 #      show-sql:  false
-#      hibernate:
+#       hibernate:
 #        ddl-auto: update     
 server:
     port: 9000

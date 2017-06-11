@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Alarm &auml;ndern</div>
+    <div class="panel-body">
+        <form data-toggle="validator" class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Isin:</label>
+                <div class="col-lg-8" style="margin-top: 8px;">
+                    <div location="isin"></div>                    
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Price-Limit:</label>
+                <div class="col-lg-8" style="margin-top: 8px;">
+                    <div location="priceLimit"></div>                    
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Price-Limit-Direction:</label>
+                <div class="col-lg-8" style="margin-top: 8px;">
+                    <div location="priceLimitDirection"></div>                    
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Comment:</label>
+                <div class="col-lg-8" style="margin-top: 8px;">
+                    <div location="comment"></div>                    
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-lg-offset-4 col-lg-8">
+                    <button type="button"  
+                       class="btn btn-sm btn-default"
+                       onclick="javascript:de.goldmann.portfolio.ui.events.edit.save(document.getElementById('priceLimit').value, document.getElementById('comment').value);">Speichern</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

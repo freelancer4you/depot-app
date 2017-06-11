@@ -49,7 +49,7 @@ public class HumanUser implements Serializable {
     private Set<Depot>        depots;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = false, cascade = CascadeType.ALL)
-    private Set<MonitorEvent> alarme;
+    private Set<MonitorEvent> events;
 
     HumanUser() {
         super();
@@ -83,11 +83,11 @@ public class HumanUser implements Serializable {
         return Collections.unmodifiableSet(depots);
     }
 
-    public Set<MonitorEvent> getAlarme() {
-        if (alarme == null) {
-            this.alarme = new HashSet<>();
+    public Set<MonitorEvent> getEvents() {
+        if (events == null) {
+            this.events = new HashSet<>();
         }
-        return Collections.unmodifiableSet(alarme);
+        return Collections.unmodifiableSet(events);
     }
 
     @Override

@@ -12,15 +12,19 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Table.ColumnGenerator;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.themes.ValoTheme;
 
 public class EventsTableActionColumn implements ColumnGenerator {
 
     private static final long serialVersionUID = 1L;
-    private final Table       eventsTable;
+    // private final Table eventsTable;
+    private final LazyQueryContainer lazyQueryContainer;
+    private final EventsResolver eventsResolver;
 
-    public EventsTableActionColumn(final Table eventsTable) {
-        this.eventsTable = Objects.requireNonNull(eventsTable, "eventsTable");
+    public EventsTableActionColumn(final LazyQueryContainer lazyQueryContainer, final EventsResolver eventsResolver) {
+        this.lazyQueryContainer = Objects.requireNonNull(lazyQueryContainer, "lazyQueryContainer");
+        this.eventsResolver = Objects.requireNonNull(eventsResolver, "eventsResolver");
     }
 
     @Override
@@ -30,7 +34,7 @@ public class EventsTableActionColumn implements ColumnGenerator {
         final Button editBtn = new Button();
         editBtn.addStyleName(ValoTheme.BUTTON_LINK);
         editBtn.setIcon(new ClassResource("/edit.png"));
-        editBtn.addClickListener(new EventsEditClickListener());
+        editBtn.addClickListener(new EventsEditClickListener(itemId));
         hbox.addComponent(editBtn);
 
         final Button removeBtn = new Button();
@@ -45,11 +49,15 @@ public class EventsTableActionColumn implements ColumnGenerator {
 
         private static final long serialVersionUID = 1L;
 
-        @Override
-        public void buttonClick(final ClickEvent event) {
-            // TODO Eintrag ändern
-            System.out.println("ändern");
+        private final Object id;
 
+        public EventsEditClickListener(final Object id) {
+            this.id = Objects.requireNonNull(id, "id");
+        }
+
+        @Override
+        public void buttonClick(final ClickEvent clickEvent) {
+            UI.getCurrent().addWindow(new EditDialog(lazyQueryContainer, id, eventsResolver));
         }
     }
 
@@ -65,12 +73,10 @@ public class EventsTableActionColumn implements ColumnGenerator {
         @Override
         public void buttonClick(final ClickEvent event) {
 
-            final LazyQueryContainer containerDataSource = (LazyQueryContainer) eventsTable.getContainerDataSource();
-
-            final boolean removed = containerDataSource.removeItem(id);
+            final boolean removed = lazyQueryContainer.removeItem(id);
             if (removed) {
-                containerDataSource.commit();
-                containerDataSource.refresh();
+                lazyQueryContainer.commit();
+                lazyQueryContainer.refresh();
                 System.out.println("removed event with id " + id);
             } else {
                 System.out.println("event with id " + id + " not found");

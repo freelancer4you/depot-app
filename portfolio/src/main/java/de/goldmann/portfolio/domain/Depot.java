@@ -21,36 +21,36 @@ import javax.persistence.Table;
 @Table(name = "depots")
 public class Depot implements Serializable {
 
-    private static final long     serialVersionUID = 1852970639649179971L;
+    private static final long serialVersionUID = 1852970639649179971L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long                  id;
+    private long id;
 
     @Column(name = "name", nullable = true)
-    private String                name;
+    private String name;
 
     @Column(name = "seedcapital", nullable = true)
-    private Double                seedCapital;
+    private Double seedCapital;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "depot")
     private Set<StockWithinDepot> stocks;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "humanuser_id", nullable = false)
-    private HumanUser             user;
+    private HumanUser user;
 
     // Anteil der Aktien im Depot
     @Column(name = "stockspercentage", nullable = true)
-    private Double                stocksPercentage;
+    private Double stocksPercentage;
 
     // Anteil des Bargeldes im Depot
     @Column(name = "cashpercentage", nullable = true)
-    private Double                cashPercentage;
+    private Double cashPercentage;
 
     // Bargeld im Depot
     @Column(name = "cashamount", nullable = true)
-    private Double                cashAmount;
+    private Double cashAmount;
 
     Depot() {
         super();
@@ -72,7 +72,8 @@ public class Depot implements Serializable {
     }
 
     public Set<StockWithinDepot> getStocks() {
-        if (stocks == null) {
+        if (stocks == null)
+        {
             stocks = new HashSet<>();
         }
         return Collections.unmodifiableSet(stocks);
@@ -112,17 +113,21 @@ public class Depot implements Serializable {
 
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj) {
+        if (this == obj)
+        {
             return true;
         }
-        if (obj == null) {
+        if (obj == null)
+        {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
+        {
             return false;
         }
         final Depot other = (Depot) obj;
-        if (id != other.id) {
+        if (id != other.id)
+        {
             return false;
         }
         return true;

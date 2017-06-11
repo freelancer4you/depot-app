@@ -16,56 +16,51 @@ import freemarker.template.TemplateNotFoundException;
 
 public class EditForm extends AbstractCustomLayout {
 
-    private static final long   serialVersionUID    = 8905984202199455295L;
+    private static final long serialVersionUID = 8905984202199455295L;
 
-    private static final String EDIT_FORM_HTML     = "rebalancing-edit-dialog.html";
+    private static final String EDIT_FORM_HTML = "rebalancing-edit-dialog.html";
 
     private static final String EDIT_SAVE_FUNCTION = "de.goldmann.portfolio.ui.rebalancing.edit.save";
 
     public EditForm(final Window window, final SaveCommand command) {
         super();
 
-        addComponent(
-                new Label(command.getPercentage() + " %"),
-                "actualPercentage"
-                );
+        addComponent(new Label(command.getPercentage() + " %"), "actualPercentage");
 
-        com.vaadin.ui.JavaScript.getCurrent().addFunction(
-                EDIT_SAVE_FUNCTION,
-                arguments ->
+        com.vaadin.ui.JavaScript.getCurrent().addFunction(EDIT_SAVE_FUNCTION, arguments ->
+        {
+            try
+            {
+                if (command instanceof PositionSaveCommand)
                 {
-                    try{
-                        if (command instanceof PositionSaveCommand)
-                        {
-                            final Double changedPercentage = Double.parseDouble(arguments.getString(0));
-                            ((PositionSaveCommand) command).updatePercentage(changedPercentage);
-                            com.vaadin.ui.JavaScript.getCurrent()
-                            .execute(
-                                    "document.getElementById('"
-                                            + command.getIsin()
-                                            + "-td').innerHTML="
-                                            + changedPercentage
-                                            +";"  
-                                            +"document.getElementById('"
-                                            + command.getIsin()
-                                            + "-td').onchange();"
-                                    );
+                    final Double changedPercentage = Double.parseDouble(arguments.getString(0));
+                    ((PositionSaveCommand) command).updatePercentage(changedPercentage);
+                    com.vaadin.ui.JavaScript.getCurrent().execute(
+                            "document.getElementById('"
+                                    + command.getIsin()
+                                    + "-td').innerHTML="
+                                    + changedPercentage
+                                    + ";"
+                                    + "document.getElementById('"
+                                    + command.getIsin()
+                                    + "-td').onchange();");
 
-                            window.close();
-                        }
-                        else if (command instanceof RiskFreePositionSaveCommand)
-                        {
-                            throw new NotImplementedException("Not implemented yet");
-                        }
-                        else if (command instanceof StocksSaveCommand)
-                        {
-                            throw new NotImplementedException("Not implemented yet");
-                        }
-                    }
-                    catch (final NumberFormatException e) {
-                        com.vaadin.ui.JavaScript.getCurrent().execute("submit();");
-                    }
-                });
+                    window.close();
+                }
+                else if (command instanceof RiskFreePositionSaveCommand)
+                {
+                    throw new NotImplementedException("Not implemented yet");
+                }
+                else if (command instanceof StocksSaveCommand)
+                {
+                    throw new NotImplementedException("Not implemented yet");
+                }
+            }
+            catch (final NumberFormatException e)
+            {
+                com.vaadin.ui.JavaScript.getCurrent().execute("submit();");
+            }
+        });
     }
 
     @Override
@@ -73,6 +68,5 @@ public class EditForm extends AbstractCustomLayout {
             throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException {
         return configuration.getTemplate(PortfolioConstants.TEMPLATES_FOLDER + EDIT_FORM_HTML);
     }
-
 
 }

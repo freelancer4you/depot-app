@@ -1,7 +1,6 @@
 package de.goldmann.portfolio.ui.stocks;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -27,6 +26,8 @@ import de.goldmann.portfolio.domain.StockWithinDepot;
 import de.goldmann.portfolio.domain.repository.StockWithinDepotRepository;
 import de.goldmann.portfolio.services.YahooFinanceService;
 import de.goldmann.portfolio.ui.depot.DepotView;
+import de.goldmann.portfolio.ui.events.EventsContainer;
+import de.goldmann.portfolio.ui.events.EventsResolver;
 import de.goldmann.portfolio.ui.events.EventsTable;
 import de.goldmann.portfolio.ui.history.OrderHistoryTable;
 import yahoofinance.Stock;
@@ -49,7 +50,7 @@ public class StockDetailsView extends VerticalLayout implements View {
             final UI mainUi,
             final EntityManager em,
             final StockWithinDepotRepository stockWithinDepotRepository,
-            final YahooFinanceService financeService) {
+            final YahooFinanceService financeService, final EventsResolver eventsResolver) {
         super();
         Objects.requireNonNull(em, "em");
         this.stockWithinDepotRepository = Objects.requireNonNull(stockWithinDepotRepository,
@@ -90,7 +91,7 @@ public class StockDetailsView extends VerticalLayout implements View {
         historyTable = new OrderHistoryTable(em);
         historyEventsLayout.addComponent(historyTable);
 
-        eventsTable = new EventsTable(em);
+        eventsTable = new EventsTable(new EventsContainer(eventsResolver, ""), eventsResolver);
         historyEventsLayout.addComponent(eventsTable);
 
         final VerticalLayout infoTableLayout = new VerticalLayout();
@@ -113,18 +114,20 @@ public class StockDetailsView extends VerticalLayout implements View {
             if (msgs != null && msgs.length > 0) {
                 final String isin = msgs[0];
 
-                this.infoTable.getContainerDataSource().removeAllItems();
+                infoTable.getContainerDataSource().removeAllItems();
 
                 final Optional<StockWithinDepot> stockWithinDepotOpt = stockWithinDepotRepository.findByStockIsin(isin);
                 if (stockWithinDepotOpt.isPresent()) {
-                    this.historyTable.update(isin);
-                    this.eventsTable.update(isin);
+                    historyTable.update(isin);
+                    eventsTable.update(isin);
+
                     final StockWithinDepot stockWithinDepot = stockWithinDepotOpt.get();
                     final StockData stockData = stockWithinDepot.getStockData();
-                    this.nameLabel.setValue(stockData.getName());
-                    final Stock stock = this.financeService.getStock(stockData.getSearchKey());
+                    final Stock stock = financeService.getStock(stockData.getSearchKey());
                     final BigDecimal price = stock.getQuote().getPrice();
-                    this.priceLabel.setValue(String.valueOf(price.setScale(2, RoundingMode.HALF_UP)));
+
+                    nameLabel.setValue(stockData.getName());
+                    priceLabel.setValue(String.valueOf(Utils.round(price, 2)));
 
                     addInfo("ISIN", stockData.getIsin());
                     addInfo("Anzahl", stockWithinDepot.getAnzahl());

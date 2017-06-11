@@ -1,6 +1,8 @@
 package de.goldmann.portfolio.ui.events;
 
-import javax.persistence.EntityManager;
+import java.util.Objects;
+
+import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 
 import com.vaadin.ui.Table;
 import com.vaadin.ui.themes.ValoTheme;
@@ -10,18 +12,19 @@ import de.goldmann.portfolio.domain.MonitorEvent;
 public class EventsTable extends Table {
 
     private static final long serialVersionUID = -4950224005389926258L;
-    private transient final EntityManager em;
+    private final EventsResolver eventsResolver;
 
-    public EventsTable(final EntityManager em) {
+    public EventsTable(final LazyQueryContainer dataSource, final EventsResolver eventsResolver) {
         super("Alarme");
-        this.em = em;
+        this.eventsResolver = Objects.requireNonNull(eventsResolver, "eventsResolver");
         setWidth("100%");
-        setContainerDataSource(new EventsContainer(em, ""));
-        setVisibleColumns(MonitorEvent.STOCKDATA_NAME, MonitorEvent.COMMENT, MonitorEvent.PRICE_LIMIT);
+        setContainerDataSource(dataSource);
+        setVisibleColumns(MonitorEvent.STOCKDATA_NAME, MonitorEvent.COMMENT);
         setColumnHeader(MonitorEvent.STOCKDATA_NAME, "Name");
         setColumnHeader(MonitorEvent.COMMENT, "Kommentar");
-        setColumnHeader(MonitorEvent.PRICE_LIMIT, "Preis");
-        addGeneratedColumn("Aktionen", new EventsTableActionColumn(this));
+        // setColumnHeader(MonitorEvent.PRICE_LIMIT, "Preis");
+        addGeneratedColumn("Bedingung", new ConditionColumn(dataSource, eventsResolver));
+        addGeneratedColumn("Aktionen", new EventsTableActionColumn(dataSource, eventsResolver));
 
         // Show exactly the currently contained rows (items)
         // Allow selecting items from the table.
@@ -36,7 +39,7 @@ public class EventsTable extends Table {
 
     public void update(final String isin) {
         setContainerDataSource(null);
-        setContainerDataSource(new EventsContainer(em, isin));
+        setContainerDataSource(new EventsContainer(eventsResolver, isin));
     }
 
 }

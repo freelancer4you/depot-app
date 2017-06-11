@@ -5,8 +5,6 @@ import static de.goldmann.portfolio.PortfolioConstants.BATCH_SIZE_LAZYQUERYCONTA
 import static de.goldmann.portfolio.PortfolioConstants.COMPOSITE_ITEMS;
 import static de.goldmann.portfolio.PortfolioConstants.DETACHED_ENTITIES;
 
-import javax.persistence.EntityManager;
-
 import org.vaadin.addons.lazyquerycontainer.EntityQueryDefinition;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 
@@ -15,7 +13,7 @@ public class EventsContainer extends LazyQueryContainer {
 
     private static final long  serialVersionUID = 1L;
 
-    public EventsContainer(final EntityManager em, final String isin) {
+    public EventsContainer(final EventsResolver eventsResolver, final String isin) {
         super(
                 new EntityQueryDefinition(
                         APPLICATION_MANAGED_TRANSACTIONS,
@@ -25,12 +23,12 @@ public class EventsContainer extends LazyQueryContainer {
                         BATCH_SIZE_LAZYQUERYCONTAINER,
                         MonitorEvent.ID
                         ),
-                new EventsQueryFactory(em, isin)
+                new EventsQueryFactory(eventsResolver, isin)
                 );
         this.addContainerProperty(MonitorEvent.STOCKDATA_NAME, String.class, null, true, true);
         this.addContainerProperty(MonitorEvent.STOCKDATA_ISIN, String.class, null, true, true);
         this.addContainerProperty(MonitorEvent.COMMENT, String.class, null, true, true);
-        this.addContainerProperty(MonitorEvent.PRICE_LIMIT, Double.class, null, true, true);
+        // this.addContainerProperty(MonitorEvent.PRICE_LIMIT, Double.class,
+        // null, true, true);
     }
-
 }

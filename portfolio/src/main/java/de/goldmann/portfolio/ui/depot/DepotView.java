@@ -1,7 +1,6 @@
 package de.goldmann.portfolio.ui.depot;
 
 import java.util.Objects;
-import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
@@ -13,9 +12,9 @@ import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.TabSheet;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.TabSheet.SelectedTabChangeEvent;
 import com.vaadin.ui.TabSheet.SelectedTabChangeListener;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 import de.goldmann.portfolio.csv.CsvReader;
@@ -26,6 +25,8 @@ import de.goldmann.portfolio.domain.repository.MonitorEventRepository;
 import de.goldmann.portfolio.domain.repository.OrderHistoryRepository;
 import de.goldmann.portfolio.domain.repository.StockWithinDepotRepository;
 import de.goldmann.portfolio.services.YahooFinanceService;
+import de.goldmann.portfolio.ui.events.EventDepotLayout;
+import de.goldmann.portfolio.ui.events.EventsResolver;
 import de.goldmann.portfolio.ui.rebalancing.RebalancingView;
 import de.goldmann.portfolio.ui.rebalancing.RebalancingViewUpdater;
 import de.goldmann.portfolio.ui.rebalancing.RebalancingViewUpdater.DepotCallback;
@@ -48,27 +49,25 @@ public class DepotView extends VerticalLayout implements View {
 
     private Depot                           depot;
 
-    public DepotView(final EntityManager em, 
+    public DepotView(final EntityManager em,
             final StockWithinDepotRepository stockWithinDepotRepository,
-            final OrderHistoryRepository orderHistoryRepository, 
+            final OrderHistoryRepository orderHistoryRepository,
             final MonitorEventRepository monitorEventRepository,
-            final YahooFinanceService yahooFinanceService, 
-            final DepotRepository depotRepo, 
+            final YahooFinanceService yahooFinanceService,
+            final DepotRepository depotRepo,
             final Environment env,
             final UI mainUi,
-            final CsvReader csvReader) {
+            final CsvReader csvReader,
+            final EventsResolver eventsResolver) {
         super();
         this.depotRepo = Objects.requireNonNull(depotRepo, "depotRepo");
-
+        Objects.requireNonNull(eventsResolver, "eventsResolver");
         depotInfoView = new DepotInformation();
 
         final TabSheet tabsheet = new TabSheet();
         tabsheet.setSizeFull();
 
         final DepotCallback depotCallback = this::getDepot;
-
-        final VerticalLayout alarmeTab = new VerticalLayout();
-        alarmeTab.setSizeFull();
 
         final VerticalLayout dividendenTab = new VerticalLayout();
         dividendenTab.setSizeFull();
@@ -97,7 +96,8 @@ public class DepotView extends VerticalLayout implements View {
                 );
         tabsheet.addTab(etfsView, "ETFs");
 
-        tabsheet.addTab(alarmeTab, "Alarme");
+        tabsheet.addTab(new EventDepotLayout(eventsResolver, depotCallback), "Alarme");
+
         tabsheet.addTab(dividendenTab, "Dividenden");
         rebalancingView = new RebalancingView(
                 stockWithinDepotRepository, depotCallback, depotRepo
@@ -139,11 +139,16 @@ public class DepotView extends VerticalLayout implements View {
             if (msgs != null && msgs.length > 0) {
                 final String depotName = msgs[0];
                 if (!"".equals(depotName)) {
-                    final Optional<Depot> depotOpt = depotRepo.findByName(depotName);
-                    if (depotOpt.isPresent()) {
+                    // final Optional<Depot> depotOpt =
+                    // depotRepo.findByNameWithUser(depotName);
+                    final Depot depotOpt = depotRepo.findByNameWithUser(depotName);
+                    // if (depotOpt.isPresent()) {
+                    if (depotOpt != null)
+                    {
                         aktienView.update(depotName);
                         etfsView.update(depotName);
-                        depot = depotOpt.get();
+                        // depot = depotOpt.get();
+                        depot = depotOpt;
                         depotInfoView.updateView(depot);
                     }
                 }

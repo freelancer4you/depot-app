@@ -15,4 +15,6 @@ public interface MonitorEventRepository extends JpaRepository<MonitorEvent, Long
 
     @Query("select u.stock.searchKey from MonitorEvent u")
     Set<String> loadSearchKeys();
+
+    int countByStockIsin(String isin);
 }
