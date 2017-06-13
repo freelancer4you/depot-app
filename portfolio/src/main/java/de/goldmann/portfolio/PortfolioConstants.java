@@ -1,5 +1,9 @@
 package de.goldmann.portfolio;
 
+import static java.time.format.DateTimeFormatter.ofPattern;
+
+import java.time.format.DateTimeFormatter;
+
 public final class PortfolioConstants {
 
     public static final boolean APPLICATION_MANAGED_TRANSACTIONS = true;
@@ -7,6 +11,9 @@ public final class PortfolioConstants {
     public static final boolean COMPOSITE_ITEMS = false;
     public static final int     BATCH_SIZE_LAZYQUERYCONTAINER    = 500;
     public static final String   TEMPLATES_FOLDER    = "templates/";
+    public static final DateTimeFormatter FORMATTER = ofPattern("dd-MM-yyyy");
+    // private final Set<Integer> PARTS_TO_SKIP = new HashSet<>(Arrays.asList(1,
+    // 2, 5, 6));
 
     PortfolioConstants() {}
 

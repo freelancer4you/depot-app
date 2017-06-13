@@ -1,31 +1,24 @@
-package de.goldmann.portfolio.ui.stocks;
+package de.goldmann.portfolio.ui.stocks.details;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
-import com.vaadin.data.Item;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.themes.BaseTheme;
 
-import de.goldmann.portfolio.Utils;
 import de.goldmann.portfolio.domain.StockData;
 import de.goldmann.portfolio.domain.StockWithinDepot;
 import de.goldmann.portfolio.domain.repository.StockWithinDepotRepository;
 import de.goldmann.portfolio.services.YahooFinanceService;
-import de.goldmann.portfolio.ui.depot.DepotView;
+import de.goldmann.portfolio.ui.booking.AccountBookingResolver;
+import de.goldmann.portfolio.ui.booking.AccountBookingTable;
 import de.goldmann.portfolio.ui.events.EventsContainer;
 import de.goldmann.portfolio.ui.events.EventsResolver;
 import de.goldmann.portfolio.ui.events.EventsTable;
@@ -40,68 +33,52 @@ public class StockDetailsView extends VerticalLayout implements View {
     public static final String VIEW_NAME = "stockDetails";
     private final OrderHistoryTable historyTable;
     private final EventsTable eventsTable;
-    private final Label nameLabel;
     private final StockWithinDepotRepository stockWithinDepotRepository;
     private final YahooFinanceService financeService;
-    private final Label priceLabel;
-    private final Table infoTable;
+    private final DetailsTable detailsTable;
+    private final InfoBarBinding binder;
+    private final AccountBookingTable accountBookingTable;
 
     public StockDetailsView(
             final UI mainUi,
             final EntityManager em,
             final StockWithinDepotRepository stockWithinDepotRepository,
-            final YahooFinanceService financeService, final EventsResolver eventsResolver) {
+            final YahooFinanceService financeService,
+            final EventsResolver eventsResolver,
+            final AccountBookingResolver accountBookingResolver) {
         super();
+
         Objects.requireNonNull(em, "em");
         this.stockWithinDepotRepository = Objects.requireNonNull(stockWithinDepotRepository,
                 "stockWithinDepotRepository");
         this.financeService = Objects.requireNonNull(financeService, "financeService");
+        Objects.requireNonNull(em, "em");
+
         setSpacing(true);
-        final Button backBtn = new Button("Zurück zur Übersicht");
-        backBtn.setWidth("20%");
-        backBtn.setStyleName(BaseTheme.BUTTON_LINK);
-        backBtn.addClickListener(e -> {
-            mainUi.getNavigator().navigateTo(DepotView.VIEW_NAME);
-        });
-
-        final HorizontalLayout btnBar = new HorizontalLayout();
-        btnBar.addComponent(backBtn);
-        btnBar.setComponentAlignment(backBtn, Alignment.MIDDLE_LEFT);
-        addComponent(btnBar);
-
-        final HorizontalLayout infoBar = new HorizontalLayout();
-        infoBar.setSpacing(true);
-
-        nameLabel = new Label();
-        infoBar.addComponent(nameLabel);
-
-        infoBar.addComponent(new Label("|"));
-
-        priceLabel = new Label();
-        infoBar.addComponent(priceLabel);
-
-        addComponent(infoBar);
+        addComponent(new ButtonBar(mainUi));
+        binder = new InfoBarBinding();
+        addComponent(new InfoBar(binder));
 
         final HorizontalLayout tableLayout = new HorizontalLayout();
         tableLayout.setWidth("100%");
-        final VerticalLayout historyEventsLayout = new VerticalLayout();
-        historyEventsLayout.setWidth("75%");
-        tableLayout.addComponent(historyEventsLayout);
+        final VerticalLayout historyLayout = new VerticalLayout();
+        historyLayout.setWidth("75%");
+        tableLayout.addComponent(historyLayout);
 
         historyTable = new OrderHistoryTable(em);
-        historyEventsLayout.addComponent(historyTable);
+        historyLayout.addComponent(historyTable);
+
+        accountBookingTable = new AccountBookingTable(accountBookingResolver);
+        historyLayout.addComponent(accountBookingTable);
 
         eventsTable = new EventsTable(new EventsContainer(eventsResolver, ""), eventsResolver);
-        historyEventsLayout.addComponent(eventsTable);
+        historyLayout.addComponent(eventsTable);
 
         final VerticalLayout infoTableLayout = new VerticalLayout();
         tableLayout.addComponent(infoTableLayout);
 
-        infoTable = new Table("Übersicht");
-        infoTable.setWidth("100%");
-        infoTable.addContainerProperty("Name", String.class, null);
-        infoTable.addContainerProperty("Wert", String.class, null);
-        infoTableLayout.addComponent(infoTable);
+        detailsTable = new DetailsTable(accountBookingResolver);
+        infoTableLayout.addComponent(detailsTable);
 
         addComponent(tableLayout);
     }
@@ -114,40 +91,28 @@ public class StockDetailsView extends VerticalLayout implements View {
             if (msgs != null && msgs.length > 0) {
                 final String isin = msgs[0];
 
-                infoTable.getContainerDataSource().removeAllItems();
+                detailsTable.clearData();
+                // TODO Methode deleteAllItems muss noch implementiert werden
+                // historyTable.getContainerDataSource().removeAllItems();
+                // eventsTable.getContainerDataSource().removeAllItems();
+                // accountBookingTable.getContainerDataSource().removeAllItems();
 
                 final Optional<StockWithinDepot> stockWithinDepotOpt = stockWithinDepotRepository.findByStockIsin(isin);
                 if (stockWithinDepotOpt.isPresent()) {
                     historyTable.update(isin);
                     eventsTable.update(isin);
+                    accountBookingTable.update(isin);
 
                     final StockWithinDepot stockWithinDepot = stockWithinDepotOpt.get();
                     final StockData stockData = stockWithinDepot.getStockData();
                     final Stock stock = financeService.getStock(stockData.getSearchKey());
-                    final BigDecimal price = stock.getQuote().getPrice();
-
-                    nameLabel.setValue(stockData.getName());
-                    priceLabel.setValue(String.valueOf(Utils.round(price, 2)));
-
-                    addInfo("ISIN", stockData.getIsin());
-                    addInfo("Anzahl", stockWithinDepot.getAnzahl());
-                    addInfo("Branche", stockData.getIndustry().name());
-                    addInfo("Aktuelle Position",
-                            Utils.round(new BigDecimal(stockWithinDepot.getAnzahl()).multiply(price), 2));
-                    // TODO Verlust/ Gewinn/ Dividende / Kosten Orders
-                    // addInfo("Anzahl", stockWithinDepot.get().get);
+                    binder.update(stock, stockData.getName());
+                    detailsTable.update(stockWithinDepot, stock);
                 }
                 else {
                     throw new IllegalArgumentException("Unknown Stock with ISIN:" + isin);
                 }
             }
         }
-    }
-
-    private void addInfo(final String name, final Object value) {
-        final Object newItemId = infoTable.addItem();
-        final Item row1 = infoTable.getItem(newItemId);
-        row1.getItemProperty("Name").setValue(name);
-        row1.getItemProperty("Wert").setValue(String.valueOf(value));
     }
 }

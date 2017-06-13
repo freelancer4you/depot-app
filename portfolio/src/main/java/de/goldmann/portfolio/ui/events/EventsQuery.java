@@ -44,7 +44,7 @@ public class EventsQuery implements Query {
 
     @Override
     public Item constructItem() {
-        return eventsResolver.constructItem(definition);
+        throw new UnsupportedOperationException();
     }
 
 }

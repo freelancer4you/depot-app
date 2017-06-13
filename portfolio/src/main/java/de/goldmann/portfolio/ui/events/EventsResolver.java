@@ -62,12 +62,6 @@ public class EventsResolver implements Serializable {
         return items;
     }
 
-    public Item constructItem(final QueryDefinition definition) {
-        return new NestingBeanItem<MonitorEvent>(new MonitorEvent(),
-                MAX_NESTED_PROPERTYDEPTH,
-                definition.getPropertyIds());
-    }
-
     public void saveItems(final List<Item> addedItems, final List<Item> modifiedItems, final List<Item> removedItems) {
         if (!addedItems.isEmpty())
         {

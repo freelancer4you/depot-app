@@ -17,6 +17,7 @@ import de.goldmann.portfolio.domain.repository.OrderHistoryRepository;
 import de.goldmann.portfolio.domain.repository.StockWithinDepotRepository;
 import de.goldmann.portfolio.services.YahooFinanceService;
 import de.goldmann.portfolio.ui.order.OrderControllerImpl;
+import de.goldmann.portfolio.ui.stocks.details.StockDetailsView;
 
 public class StocksTable extends Table {
 

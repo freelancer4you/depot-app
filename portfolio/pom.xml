@@ -207,12 +207,8 @@
 			<artifactId>selenium-server</artifactId>
 			<scope>test</scope>
 			<version>3.0.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-groovysh</artifactId>
-		</dependency>
+		</dependency>		
+		
 	</dependencies>
 
 	<dependencyManagement>

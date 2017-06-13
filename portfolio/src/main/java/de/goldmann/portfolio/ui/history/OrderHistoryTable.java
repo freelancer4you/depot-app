@@ -39,7 +39,6 @@ public class OrderHistoryTable extends Table {
         setSizeFull();
         setStyleName(ValoTheme.TABLE_SMALL);
         setPageLength(getContainerDataSource().size());
-        setWidth("100%");
 
         // Send changes in selection immediately to server.
         setImmediate(true);

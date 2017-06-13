@@ -9,26 +9,24 @@ import org.vaadin.addons.lazyquerycontainer.EntityQueryDefinition;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 
 import de.goldmann.portfolio.domain.MonitorEvent;
-public class EventsContainer extends LazyQueryContainer {
 
-    private static final long  serialVersionUID = 1L;
+@SuppressWarnings("serial")
+public class EventsContainer extends LazyQueryContainer {
 
     public EventsContainer(final EventsResolver eventsResolver, final String isin) {
         super(
-                new EntityQueryDefinition(
-                        APPLICATION_MANAGED_TRANSACTIONS,
-                        DETACHED_ENTITIES,
-                        COMPOSITE_ITEMS,
-                        MonitorEvent.class,
-                        BATCH_SIZE_LAZYQUERYCONTAINER,
-                        MonitorEvent.ID
-                        ),
-                new EventsQueryFactory(eventsResolver, isin)
+              new EntityQueryDefinition(
+                                        APPLICATION_MANAGED_TRANSACTIONS,
+                                        DETACHED_ENTITIES,
+                                        COMPOSITE_ITEMS,
+                                        MonitorEvent.class,
+                                        BATCH_SIZE_LAZYQUERYCONTAINER,
+                                        MonitorEvent.ID
+                      ),
+              new EventsQueryFactory(eventsResolver, isin)
                 );
         this.addContainerProperty(MonitorEvent.STOCKDATA_NAME, String.class, null, true, true);
         this.addContainerProperty(MonitorEvent.STOCKDATA_ISIN, String.class, null, true, true);
         this.addContainerProperty(MonitorEvent.COMMENT, String.class, null, true, true);
-        // this.addContainerProperty(MonitorEvent.PRICE_LIMIT, Double.class,
-        // null, true, true);
     }
 }

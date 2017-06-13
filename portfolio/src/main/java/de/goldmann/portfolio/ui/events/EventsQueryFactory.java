@@ -8,10 +8,12 @@ import org.vaadin.addons.lazyquerycontainer.QueryFactory;
 
 public class EventsQueryFactory implements QueryFactory {
 
-    private final String              isin;
+    private final String isin;
     private final EventsResolver eventsResolver;
 
-    public EventsQueryFactory(final EventsResolver eventsResolver, final String isin) {
+    public EventsQueryFactory(
+            final EventsResolver eventsResolver,
+            final String isin) {
         this.eventsResolver = Objects.requireNonNull(eventsResolver, "eventsResolver");
         this.isin = isin;
     }
