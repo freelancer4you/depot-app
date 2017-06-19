@@ -19,13 +19,15 @@ public class StockWithinDepot implements Serializable {
 
     private static final long  serialVersionUID = 5145031088862708508L;
 
-    public static final String ID               = "id";
+    public static final String ID = "id";
 
-    public static final String NAME             = "stockData.name";
+    public static final String NAME = "stockData.name";
 
-    public static final String ISIN             = "stockData.isin";
+    public static final String ISIN = "stockData.isin";
 
-    public static final String QUANTITY         = "anzahl";
+    public static final String INDUSTRY = "stockData.industry";
+
+    public static final String QUANTITY = "anzahl";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

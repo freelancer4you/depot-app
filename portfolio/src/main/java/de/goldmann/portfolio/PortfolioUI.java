@@ -41,6 +41,8 @@ import de.goldmann.portfolio.ui.StartView;
     PortfolioConstants.VENDOR_PATH + PortfolioConstants.SLIMSCROLL_PATH + "jquery.slimscroll.min.js",
     PortfolioConstants.VENDOR_PATH + PortfolioConstants.STORE_PATH + "store.json2.min.js",
     PortfolioConstants.VENDOR_PATH + PortfolioConstants.CLASSYLOADER_PATH + "js/jquery.classyloader.min.js",
+    PortfolioConstants.VENDOR_PATH + PortfolioConstants.HIGHCHARTS_PATH + "highcharts.js",
+    
     // PortfolioConstants.VENDOR_PATH + PortfolioConstants.MOMENT_PATH +
     // "min/moment-with-langs.min.js",
     // PortfolioConstants.VENDOR_PATH +

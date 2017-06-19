@@ -35,6 +35,7 @@ public final class PortfolioConstants {
     static final String        CSSSPINNER_PATH   = "csspinner/";
     static final String        DATETIMEPICKER_PATH = "datetimepicker/";
     static final String        MOMENT_PATH         = "moment/";
+    static final String        HIGHCHARTS_PATH   = "highcharts/";
 
     static final String        CLASSYLOADER_PATH = "classyloader/";
 

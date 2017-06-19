@@ -1,6 +1,7 @@
 package de.goldmann.portfolio.ui.stocks;
 
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
@@ -21,7 +22,7 @@ import de.goldmann.portfolio.domain.repository.OrderHistoryRepository;
 import de.goldmann.portfolio.domain.repository.StockWithinDepotRepository;
 import de.goldmann.portfolio.services.YahooFinanceService;
 
-public class StocksView extends VerticalLayout {
+public class StocksView extends HorizontalLayout {
 
     private static final long  serialVersionUID = 1L;
     private final StocksTable  stocksTable;
@@ -35,50 +36,42 @@ public class StocksView extends VerticalLayout {
             final UI mainUi,
             final CsvReader csvReader) {
         super();
+        setSpacing(true);
 
         stocksTable = new StocksTable(
-                                      em,
-                                      yahooFinanceService,
-                                      stockType,
-                                      env,
-                                      stockWithinDepotRepository,
-                                      orderHistoryRepository,
-                                      mainUi
+                em,
+                yahooFinanceService,
+                stockType,
+                env,
+                stockWithinDepotRepository,
+                orderHistoryRepository,
+                mainUi
                 );
 
-        // final Sparklines s = new Sparklines("Stuff", 0, 0, 50, 100);
-        // s.setDescription("Everything turned on");
-        // s.setValue("15,26,23,56,35,37,21");
-        // s.setAverageVisible(true);
-        // s.setNormalRangeColor("#444");
-        // s.setNormalRangeMax(80);
-        // s.setNormalRangeMin(60);
-        // s.setNormalRangeVisible(true);
-        // s.setMaxColor("#f69");
-        // s.setMinColor("#6f9");
-        // return s;
-        // }
-        // });
 
         final VerticalLayout stocksTableLayout = new VerticalLayout();
         stocksTableLayout.setSpacing(true);
         stocksTableLayout.addComponent(stocksTable);
         final HorizontalLayout orderLayout = new HorizontalLayout();
         orderLayout.setSpacing(true);
-        // final TextField selectedIsinField = new TextField();
-        // selectedIsinField.setInputPrompt("ISIN");
-        // orderLayout.addComponent(selectedIsinField);
-        // orderLayout.addComponent(new Button("Kaufen"));
-        // orderLayout.addComponent(new Button("Verkauf"));
+
         final Label validationMsg = new Label();
         final Button validateBtn = new Button("Validiere Depot");
         validateBtn.addClickListener(e -> {
             final long depotCount = stockWithinDepotRepository.count();
             try {
-                final List<StockWithinCsv> stocksWithinCsv = csvReader.readPortfolioFile();
+                final Set<StockWithinCsv> stocksWithinCsv = csvReader.readPortfolioFile();
                 final long stocksWithinCount = stocksWithinCsv.size();
                 if(depotCount != stocksWithinCount){
                     validationMsg.setValue("stockWithinDepot:" + depotCount + ", StocksWithinCsv:" + stocksWithinCount);
+                    final Set<String> isinsInDepot = stockWithinDepotRepository.findAll().stream()
+                            .map(stockData -> stockData.getStockData().getIsin()).collect(Collectors.toSet());
+                    final Set<String> isinsInCsv = stocksWithinCsv.stream().map(csv -> csv.getIsin())
+                            .collect(Collectors.toSet());
+                    System.out.println(isinsInCsv.size());
+                    isinsInCsv.removeAll(isinsInDepot);
+                    System.out.println(isinsInCsv.size());
+                    System.out.println(isinsInCsv);
                 }
             } catch (final UnexpectedInputException e1) {
                 // TODO Auto-generated catch block
@@ -90,13 +83,16 @@ public class StocksView extends VerticalLayout {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
-
         });
+
         orderLayout.addComponent(validateBtn);
         orderLayout.addComponent(validationMsg);
         stocksTableLayout.addComponent(orderLayout);
         addComponent(stocksTableLayout);
+
+        addComponent(new StocksOverView(stockWithinDepotRepository));
     }
+
 
     public void update(final String depotName) {
         stocksTable.update(depotName);

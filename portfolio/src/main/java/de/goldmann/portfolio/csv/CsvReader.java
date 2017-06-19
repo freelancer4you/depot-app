@@ -1,8 +1,8 @@
 package de.goldmann.portfolio.csv;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.item.ParseException;
@@ -16,12 +16,12 @@ public class CsvReader {
     private final FlatFileItemReader<StockWithinCsv> reader;
 
     public CsvReader(
-        final FlatFileItemReader<StockWithinCsv> reader) {
+            final FlatFileItemReader<StockWithinCsv> reader) {
         this.reader = Objects.requireNonNull(reader, "reader");
     }
 
-    public List<StockWithinCsv> readPortfolioFile() throws UnexpectedInputException, ParseException, Exception {
-        final List<StockWithinCsv> stocks = new ArrayList<>();
+    public Set<StockWithinCsv> readPortfolioFile() throws UnexpectedInputException, ParseException, Exception {
+        final Set<StockWithinCsv> stocks = new HashSet<>();
         StockWithinCsv stock = null;
         reader.open(new ExecutionContext());
         do {

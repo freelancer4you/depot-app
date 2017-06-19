@@ -29,6 +29,7 @@ public class StocksTable extends Table {
     private static final String NAME_COLUMN_NAME = "Name";
     private static final String ISIN_COLUMN_NAME = "ISIN";
     public static final String VIEW_NAME = "aktien";
+    private static final String INDUSTRY_COLUMN_NAME = "Branche";
 
     private transient final EntityManager em;
 
@@ -51,9 +52,10 @@ public class StocksTable extends Table {
 
         setStyleName(ValoTheme.TABLE_SMALL);
         setContainerDataSource(new StocksContainer(em, stockType, ""));
-        setVisibleColumns(StockWithinDepot.ISIN, StockWithinDepot.NAME, StockWithinDepot.QUANTITY);
+        setVisibleColumns(StockWithinDepot.ISIN, StockWithinDepot.NAME,StockWithinDepot.INDUSTRY, StockWithinDepot.QUANTITY);
         setColumnHeader(StockWithinDepot.ISIN, ISIN_COLUMN_NAME);
         setColumnHeader(StockWithinDepot.NAME, NAME_COLUMN_NAME);
+        setColumnHeader(StockWithinDepot.INDUSTRY, INDUSTRY_COLUMN_NAME);
         setColumnHeader(StockWithinDepot.QUANTITY, ANZAHL_COLUMN_NAME);
 
         addGeneratedColumn(PREIS_COLUMN_NAME, new PriceColumnGenerator(yahooFinanceService, env));

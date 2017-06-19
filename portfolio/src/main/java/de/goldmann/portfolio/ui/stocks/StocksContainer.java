@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import org.vaadin.addons.lazyquerycontainer.EntityQueryDefinition;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 
+import de.goldmann.portfolio.domain.Industry;
 import de.goldmann.portfolio.domain.StockType;
 import de.goldmann.portfolio.domain.StockWithinDepot;
 
@@ -30,6 +31,7 @@ public class StocksContainer extends LazyQueryContainer {
                 );
         this.addContainerProperty(StockWithinDepot.ISIN, String.class, null, true, true);
         this.addContainerProperty(StockWithinDepot.NAME, String.class, null, true, true);
+        this.addContainerProperty(StockWithinDepot.INDUSTRY, Industry.class, null, true, true);
         this.addContainerProperty(StockWithinDepot.QUANTITY, String.class, null, true, true);
     }
 
