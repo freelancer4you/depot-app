@@ -131,12 +131,9 @@ public class StockData implements Serializable {
                 + (name != null ? "name=" + name + ", " : "")
                 + (wkn != null ? "wkn=" + wkn + ", " : "")
                 + (searchKey != null ? "searchKey=" + searchKey + ", " : "")
-                + (currency != null ? "currency=" + currency + ", " : "")
                 + (leadingIndex != null ? "leadingIndex=" + leadingIndex + ", " : "")
                 + (stockType != null ? "stockType=" + stockType + ", " : "")
                 + (industry != null ? "industry=" + industry : "")
                 + "]";
     }
-
-
 }

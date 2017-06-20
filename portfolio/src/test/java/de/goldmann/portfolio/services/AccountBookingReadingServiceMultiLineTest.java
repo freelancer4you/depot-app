@@ -1,7 +1,9 @@
 package de.goldmann.portfolio.services;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.util.Optional;
 import java.util.Properties;
 
 import org.junit.BeforeClass;
@@ -11,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import de.goldmann.portfolio.domain.StockWithinDepot;
 import de.goldmann.portfolio.domain.repository.AccountBookingRepository;
+import de.goldmann.portfolio.domain.repository.StockWithinDepotRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -29,13 +33,23 @@ public class AccountBookingReadingServiceMultiLineTest {
     AccountBookingReadingService service;
 
     @Autowired
-    AccountBookingRepository repo;
+    AccountBookingRepository accountBookingRepository;
+
+    @Autowired
+    StockWithinDepotRepository stockWithinDepotRepository;
 
     @Test
     public void readCsv() {
-        service.readAndSaveBookingData();
+        // Excute
+        // Achtung Lesen wird in der run-Methode der Klasse PortfolioApplication
+        // aufgerufen
+        // service.readAndSaveBookingData();
 
-        assertEquals(11, repo.count());
+        // Verify
+        assertEquals(11, accountBookingRepository.count());
+        final Optional<StockWithinDepot> stock = stockWithinDepotRepository.findByStockIsin("DE0008404005");
+        assertTrue(stock.isPresent());
+        assertEquals(1, stock.get().getAnzahl());
     }
 
 }

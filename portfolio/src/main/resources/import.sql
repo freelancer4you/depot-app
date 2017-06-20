@@ -90,6 +90,59 @@ insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype
 insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('SPDR S&P Euro Dividend Aristocrats','IE00B5M1WJ87',null,'SPYW.DE','USD',2, 'ETF','UNDEFINED');
 insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('BLACKROCK AM (DE) ISHARES','DE000A0H0785',null,'EXHF.DE','USD',2, 'ETF','UNDEFINED');
 insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('ComStage STOXX Europe 600 Food & Bev. NR UCITS ETF','LU0378435803',null,'C067.DE','USD',2, 'ETF','UNDEFINED');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('LYXOR-UCITS-ETF-FTSE-ATHEX-LARGE-CAP-EUR-DIS-ETF','FR0010405431',null,'FR0010405431.PA','USD',2, 'ETF','UNDEFINED');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('XETRA-GOLD','DE000A0S9GB0',null,'A0S9GBDE.DE','USD',2, 'ETF','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('DB-X-TRACKERS-EURO-STOXX-50-UCITS-ETF-1C-EUR-ACC-ETF','LU0380865021',null,'DXET.F','USD',2, 'ETF','UNDEFINED');
+
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('Covestro AG','DE0006062144',null,'1COV.F','USD',2, 'AKTIE','INDUSTRY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('Mobotix AG','DE0005218309',null,'MBQ.F','USD',2, 'AKTIE','TECHNOLOGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('SKF AB','SE0000108227',null,'SKFB.F','USD',2, 'AKTIE','INDUSTRY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('Rhön-Klinikum','DE0007042301',null,'RHK.F','USD',2, 'AKTIE','CHEMESTRY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('Salzgitter','DE0006202005',null,'SZG.F','USD',2, 'AKTIE','INDUSTRY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('Heidelberger-Druckmaschinen','DE0007314007',null,'HDD.F','USD',2, 'AKTIE','INDUSTRY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('RIB-Software','DE000A0Z2XN6',null,'RIB.F','USD',2, 'AKTIE','SOFTWARE');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('M4E AG','DE000A0MSEQ3',null,'MU4.F','USD',2, 'AKTIE','ENTERTAINMENT');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('Aixtron','DE000A0WMPJ6',null,'AIXA.F','USD',2, 'AKTIE','ENTERTAINMENT');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('SABINA-GOLD-SILVER','CA7852461093',null,'RXC.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('HARMONY-GOLD','ZAE000015228',null,'HAM1.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('NESTE-CORPORATION','FI0009013296',null,'NEF.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('BIOTEST-AG','DE0005227201',null,'BIO.F','USD',2, 'AKTIE','CHEMESTRY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('IAMGOLD','CA4509131088',null,'IAL.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('GoPro','US38268T1034',null,'5G5.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('Nordex','DE000A0D6554',null,'NDX1.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('ATLANTIC-GOLD-CORP','CA04854Q1019',null,'Q9I.BE','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('BEADELL-RESOURCES','AU000000BDR9',null,'3B7.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('UNDER-ARMOUR-INC','US9043111072',null,'U9R.F','USD',2, 'AKTIE','INDUSTRY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('SYGNIS-AG','DE000A1RFM03',null,'LIO1.F','USD',2, 'AKTIE','CHEMESTRY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('GOLD-FIELDS-LTD','ZAE000018123',null,'EDGA.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('K92-MINING-INC','CA4991131083',null,'92K.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('ITN-NANOVATION-AG','DE000A0JL461',null,'I7N.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('DIAGEO-PLC','GB0002374006',null,'GUI.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('AT & T','US00206R1023',null,'SOBA.F','USD',2, 'AKTIE','TELECOMMUNICATION');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('ENDEAVOUR-SILVER-CORP','CA29258Y1034',null,'EJD.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('HOCHSCHILD-MINING-PLC','GB00B1FW5029',null,'H3M.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('Gazprom','US3682872078',null,'GAZ.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('GOLDEN-STAR','CA38119T1049',null,'GS5.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('INTERNATIONAL-LITHIUM-CORP','CA4598201065',null,'IAH.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('GLENCORE','JE00B4T3BW64',null,'8GC.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('LION-E-MOBILITY-AG','CH0132594711',null,'LMI.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('DEUTSCHE-TECHNOLOGIE-BETEILIGUNGEN-AG','DE000A1X3WX6',null,'DTKK.F','USD',2, 'AKTIE','DIVERSE');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('Unilever','NL0000009355',null,'UNI3.F','USD',2, 'AKTIE','CONSUMER_GOODS');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('NOS-SGPS-SA','PTZON0AM0006',null,'PMV.F','USD',2, 'AKTIE','TELECOMMUNICATION');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('CAMECO','CA13321L1085',null,'CJ6.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('BYD-CO','CNE100000296',null,'BY6.DE','USD',2, 'AKTIE','TECHNOLOGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('OMEGA-HEALTHCARE','US6819361006',null,'OHI','USD',2, 'AKTIE','DIVERSE');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('KAPSCH-TRAFFICCOM-AG','AT000KAPSCH9',null,'BZ6.F','USD',2, 'AKTIE','INFORMATIONTECHNOLOGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('Novo-Nordisk','DK0060534915',null,'NOVC.F','USD',2, 'AKTIE','CHEMESTRY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('Solarworld','DE000A1YCMM',null,'SWVK.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('Suedzucker','DE0007297004',null,'SZU.F','USD',2, 'AKTIE','CONSUMER_GOODS');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('Baywa','DE0005194062',null,'BYW6.DE','USD',2, 'AKTIE','CONSUMER_GOODS');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('ZINC-ONE-RESOURCES','CA98959W1041',null,'RH33.F','USD',2, 'AKTIE','CONSUMER_GOODS');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('KINROSS-GOLD-CORP','CA4969024047',null,'KIN2.F','USD',2, 'AKTIE','ENERGY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('GLAXOSMITHKLINE-PLC','GB0009252882',null,'GS7.F','USD',2, 'AKTIE','CHEMESTRY');
+insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype,industry) values('DANAKALI-LTD','AU000000DNK9',null,'SO3.F','USD',2, 'AKTIE','UNDEFINED');
+
+
 
 --Benutzer
 insert into benutzer(id, email, passwort) values(1, 'system@freenet.de', '12345')
@@ -99,147 +152,6 @@ insert into benutzer(id, email, passwort) values(2, 'goldi23@freenet.de', '12345
 insert into depots(id, name, humanuser_id, seedcapital, stockspercentage, cashpercentage, cashamount) values(1, 'Aktuell', 2, 6000.0, 10, 6, 100.0);
 insert into depots(id, name, humanuser_id, seedcapital, stockspercentage, cashpercentage, cashamount) values(2, 'Aristokraten', 2, 6000.0, 10, 6, 100.0);
 
----Aktien
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (1, 5,  'DE0005552004', true, 1);--'AKTIE' Deutsche Post
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (2, 0, 'DE0005557508', false, 1);--'AKTIE' Telekom
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (3, 0,  'DE0007100000', true, 1);--'AKTIE' Daimler
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (4, 0, 'DE000KSAG888', false, 1);--'AKTIE'K+2
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (5, 0,  'DE0008404005', true, 1);--'AKTIE' Allianz
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (6, 10, 'DE000A0LD2U1', false, 1);--'AKTIE' Alstria 
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (7, 10, 'GB00B03MLX29', true, 1);--'AKTIE' Royal Dutch
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (8, 2,  'US5801351017', true, 1);--'AKTIE'  MCDONALD
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (9, 0,  'DE000A0Z2ZZ5', true, 1);--'AKTIE' FREENET
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (10, 20, 'DE000A1J5RX9', false, 1);--'AKTIE' TELEFONICA
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (11, 5,  'US92343V1044', true, 1);--'AKTIE' VERIZON 
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (12, 1, 'GB0005405286', false, 1);--'AKTIE' HSBC
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (13, 0, 'GB0007980591', false, 1);--'AKTIE' BP
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (14, 0,  'US1912161007', true, 1);--'AKTIE' Coca Cola
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id) values (15, 19, 'HK0941009539', false, 1);--'AKTIE' China Mobile
-
---ETFs
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (116, 3, 'DE000A0H0785', false, 1, 32);--'ETF' iShare Euro Gov
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (117, 40, 'FR0010429068', false, 1, 8);--'ETF' LYXOR
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (118, 10, 'LU0489337690', false, 1, 2);--'ETF' DB X-T.FTSE
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (119, 3, 'IE00B66F4759', false, 1, 32);--'ETF' iShare Euro High Yield
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (120, 14, 'IE00B5M1WJ87', false, 1, 17);--'ETF' SPDR Dividend Aristocrats
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (121, 6, 'IE00B6YX5M31', false, 1, 32);-- 'ETF' SPDR Barclays  
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (122, 24, 'LU0942970103', false, 1, 32);--'ETF' Barclay Global Aggregate Bond
-insert into stock (id,anzahl, stockdata_isin, aristocrat, depot_id, percentage) values (123, 0,'DE000A0F5UH1', false, 1, 22);--'ETF' IShare Global Select Dividend
-
-
--- -############################################# Depot  -#############################################
---Deutsche Post
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE0005552004',24.50,10,'BUY','2016-07-06');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE0005552004',28.10,3,'SELL','2016-09-22');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE0005552004',32.095,2,'SELL','2017-02-27');
-
---Telekom
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE0005557508',17.00,10,'BUY','2015-11-17');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE0005557508',14.40,10,'SELL','2016-11-17');
-
---Daimler
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE0007100000',53.97,4,'BUY','2017-06-08');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE0007100000',70.00,2,'SELL','2017-01-16');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE0007100000',53.97,2,'SELL','2016-06-29');
-
---K+S
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000KSAG888',17.60,12,'BUY','2016-09-20');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000KSAG888',18.11,12,'SELL','2016-10-20');
-
--- Allianz
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null, 'DE0008404005', 126.75, 2 ,'BUY', '2016-07-04');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null, 'DE0008404005', 159.10, 1 ,'SELL', '2017-01-16');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null, 'DE0008404005', 172.10, 1 ,'SELL', '2017-06-06');
-
---Alstria
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A0LD2U1',11.73,10,'BUY','2015-09-02');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A0LD2U1',12.90,4,'SELL','2015-10-26');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A0LD2U1',12.90,6,'SELL','2015-10-26');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A0LD2U1',11.80,20,'BUY','2016-07-06');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A0LD2U1',12.50,4,'SELL','2016-09-22');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A0LD2U1',11.50,10,'BUY','2016-11-02');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A0LD2U1',11.515,11,'SELL','2017-02-15');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A0LD2U1',11.63,5,'SELL','2016-04-11');	
-
---Royal Dutch
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB00B03MLX29',22.465,14,'BUY','2015-09-02');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB00B03MLX29',24.595,14,'SELL','2015-10-26');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB00B03MLX29',23.71,12,'BUY','2015-10-28');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB00B03MLX29',23.08,10,'BUY','2015-11-12');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB00B03MLX29',20.90,10,'BUY','2015-12-08');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB00B03MLX29',24.145,10,'SELL','2016-06-29');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB00B03MLX29',26.00,12,'SELL','2017-01-16');
-
---MCDONALD
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'US5801351017',116.25,2,'BUY','2016-08-19');
-
---FREENET
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A0Z2ZZ5',22.84,5,'BUY','2016-06-28');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A0Z2ZZ5',31.60,5,'SELL','2017-06-01');
-
---TELEFONICA
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A1J5RX9',3.80,20,'BUY','2016-06-13');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A1J5RX9',3.60,35,'BUY','2016-07-01');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A1J5RX9',4.15,20,'SELL','2017-01-09');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A1J5RX9',4.649,15,'SELL','2017-04-07');
-
---VERIZON
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'US92343V1044',45.95,5,'BUY','2016-02-08');
-
---HSBC
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB0005405286',6.80,15,'BUY','2015-09-02');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB0005405286',5.45,24,'BUY','2016-07-07');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB0005405286',6.64,9,'SELL','2016-09-28');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB0005405286',7.258,29,'SELL','2016-11-16');
-
---BP
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB0007980591',4.779,26,'BUY','2015-09-02');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB0007980591',5.23,26,'SELL','2015-10-22');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB0007980591',5.241,30,'BUY','2015-10-27');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB0007980591',4.69,12,'BUY','2015-12-08');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB0007980591',5.942,22,'SELL','2017-01-09');	
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'GB0007980591',5.25,20,'SELL','2017-06-08');	
-
---Coca Cola
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'US1912161007',41.83,6,'BUY','2016-10-04');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'US1912161007',41.16,6,'BUY','2016-10-11');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'US1912161007',41.45,6,'SELL','2016-12-15');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'US1912161007',45.10,6,'SELL','2017-06-08');
-
---CHINA Mobile
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'HK0941009539',11.00,19,'BUY','2016-09-21');
-
--- TODO AT&T
-
-
---iShare Euro Gov
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A0H0785',124.26,3,'BUY','2016-09-21');
-
---LYXOR
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'FR0010429068',8.34,40,'BUY','2016-11-26');
-
---DB X-T.FTSE
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'LU0489337690',23.85,10,'BUY','2015-10-08');
-
---iShare Euro High Yield
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'IE00B66F4759',105.31,5,'BUY','2015-11-02');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'IE00B66F4759',103.00,5,'SELL','2016-07-03');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'IE00B66F4759',104.55,3,'BUY','2016-09-20');
-
---SPDR Dividend Aristocrats
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'IE00B5M1WJ87',20.21,10,'BUY','2015-09-07');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'IE00B5M1WJ87',20.54,10,'SELL','2016-05-17');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'IE00B5M1WJ87',20.30,14,'BUY','2016-07-05');
-
---SPDR Barclays 
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'IE00B6YX5M31',56.79,6,'BUY','2016-09-21');
-
---Barclay Global Aggregate Bond
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'LU0942970103',42.50,24,'BUY','2016-07-04');
-
---IShare Global Select Dividend
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A0F5UH1',24.18,14,'BUY','2015-09-24');
-insert into orderhistory(id,stockdata_isin,price,quantity,orderaction,stamp) values(null,'DE000A0F5UH1',24.04,14,'SELL','2016-02-08');
 
 
 ---############################################# MonitorEvents #############################################

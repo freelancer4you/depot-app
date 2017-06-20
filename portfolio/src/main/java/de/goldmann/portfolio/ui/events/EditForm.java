@@ -1,6 +1,7 @@
 package de.goldmann.portfolio.ui.events;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 import org.vaadin.addons.lazyquerycontainer.NestingBeanItem;
@@ -49,7 +50,7 @@ public class EditForm extends AbstractCustomLayout {
 
         com.vaadin.ui.JavaScript.getCurrent().addFunction(EDIT_SAVE_FUNCTION, arguments ->
         {
-            final Double changedPriceLimit = Double.parseDouble(arguments.getString(0));
+            final BigDecimal changedPriceLimit = new BigDecimal(arguments.getString(0));
             final String changedComment = arguments.getString(1);
             monitorEvent.setPriceLimit(changedPriceLimit);
             monitorEvent.setComment(changedComment);

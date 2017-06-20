@@ -16,16 +16,16 @@ public class StockMapper implements FieldSetMapper<StockWithinDepot> {
     public StockWithinDepot mapFieldSet(final FieldSet fieldSet) throws BindException {
         final String isin = fieldSet.readString(ISIN_FIELD);
 
-        if (isin != null && isin.length() > 0) {
-            final StockWithinDepot stock = new StockWithinDepot();
-            // stock.setProdukt(fieldSet.readString(PRODUKT_FIELD));
-            // stock.setIsin(isin);
-            try {
-                stock.setAnzahl(Integer.parseInt(fieldSet.readString(ANZAHL_FIELD)));
-            }
-            catch (final Exception e) {}
-            return stock;
-        }
+        // if (isin != null && isin.length() > 0) {
+        // // final StockWithinDepot stock = new StockWithinDepot();
+        // // stock.setProdukt(fieldSet.readString(PRODUKT_FIELD));
+        // // stock.setIsin(isin);
+        // try {
+        // stock.setAnzahl(Integer.parseInt(fieldSet.readString(ANZAHL_FIELD)));
+        // }
+        // catch (final Exception e) {}
+        // return stock;
+        // }
         return null;
     }
 

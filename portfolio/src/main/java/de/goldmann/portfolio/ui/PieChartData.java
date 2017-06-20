@@ -1,15 +1,17 @@
 package de.goldmann.portfolio.ui;
 
+import java.util.Objects;
+
 public class PieChartData {
 
     private String name;
-    private double y;
+    private Long y;
 
     public PieChartData() {
         super();
     }
 
-    public PieChartData(final String name, final double y) {
+    public PieChartData(final String name, final Long y) {
         super();
         this.name = name;
         this.y = y;
@@ -19,7 +21,7 @@ public class PieChartData {
         return name;
     }
 
-    public double getY() {
+    public Long getY() {
         return y;
     }
 
@@ -27,7 +29,7 @@ public class PieChartData {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (name == null ? 0 : name.hashCode());
+        result = prime * result + Objects.hashCode(name);
         return result;
     }
 
@@ -46,18 +48,7 @@ public class PieChartData {
             return false;
         }
         final PieChartData other = (PieChartData) obj;
-        if (name == null)
-        {
-            if (other.name != null)
-            {
-                return false;
-            }
-        }
-        else if (!name.equals(other.name))
-        {
-            return false;
-        }
-        return true;
+        return Objects.equals(name, other.name);
     }
 
 }

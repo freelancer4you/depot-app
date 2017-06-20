@@ -13,7 +13,6 @@ public class InfoBar extends HorizontalLayout {
             final InfoBarBinding binder) {
         super();
         setSpacing(true);
-        setSizeFull();
         final Label nameLabel = new Label();
         nameLabel.setPropertyDataSource(binder.getNameProperty());
         addComponent(nameLabel);
@@ -24,6 +23,4 @@ public class InfoBar extends HorizontalLayout {
         priceLabel.setPropertyDataSource(binder.getPriceProperty());
         addComponent(priceLabel);
     }
-
-
 }

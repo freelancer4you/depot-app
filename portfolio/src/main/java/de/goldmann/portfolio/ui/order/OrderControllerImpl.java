@@ -7,27 +7,21 @@ import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 import com.vaadin.ui.Table;
 
 import de.goldmann.portfolio.domain.OrderAction;
-import de.goldmann.portfolio.domain.OrderHistory;
 import de.goldmann.portfolio.domain.StockWithinDepot;
-import de.goldmann.portfolio.domain.repository.OrderHistoryRepository;
 import de.goldmann.portfolio.domain.repository.StockWithinDepotRepository;
 
 public class OrderControllerImpl implements OrderController {
 
     private final StockWithinDepotRepository stockWithinDepotRepository;
 
-    private final OrderHistoryRepository orderHistoryRepository;
-
     private final Table stocksTable;
 
     public OrderControllerImpl(
             final Table stocksTable,
-            final StockWithinDepotRepository stockWithinDepotRepository,
-            final OrderHistoryRepository orderHistoryRepository) {
+            final StockWithinDepotRepository stockWithinDepotRepository) {
         this.stocksTable = Objects.requireNonNull(stocksTable, "stocksTable");
         this.stockWithinDepotRepository = Objects.requireNonNull(stockWithinDepotRepository,
                 "stockWithinDepotRepository");
-        this.orderHistoryRepository = Objects.requireNonNull(orderHistoryRepository, "orderHistoryRepository");
     }
 
     @Override
@@ -41,8 +35,6 @@ public class OrderControllerImpl implements OrderController {
             stock.setAnzahl(stock.getAnzahl() - quantity);
         }
         final StockWithinDepot storedStock = stockWithinDepotRepository.save(stock);
-        final OrderHistory orderHistory = new OrderHistory(storedStock.getStockData(), price, quantity, orderAction);
-        orderHistoryRepository.save(orderHistory);
         return storedStock;
     }
 

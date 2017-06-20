@@ -37,7 +37,8 @@ public class StocksQuery implements Query {
                 "SELECT count(t) from "
                         + StockWithinDepot.class.getSimpleName()
                         + " as t where t.stockData.stockType = :stockType"
-                        + " and t.depot.name = :depotName"
+                        + " and t.depot.name = :depotName "
+                        + " and t.anzahl > 0"
                 );
         query.setParameter("stockType", stockType);
         query.setParameter("depotName", depotName);
@@ -52,6 +53,7 @@ public class StocksQuery implements Query {
                         + StockWithinDepot.class.getSimpleName()
                         + " as t where t.stockData.stockType = :stockType"
                         + " and t.depot.name = :depotName"
+                        + " and t.anzahl > 0"
                         + " ORDER BY t.stockData.name"
                 );
         query.setParameter("stockType", stockType);

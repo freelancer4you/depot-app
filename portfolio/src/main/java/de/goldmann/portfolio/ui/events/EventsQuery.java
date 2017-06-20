@@ -10,8 +10,6 @@ import com.vaadin.data.Item;
 
 public class EventsQuery implements Query {
 
-    private static final int      MAX_NESTED_PROPERTYDEPTH = 2;
-    // private final EntityManager entityManager;
     private final EventsResolver eventsResolver;
     private final QueryDefinition definition;
     private final String                isin;

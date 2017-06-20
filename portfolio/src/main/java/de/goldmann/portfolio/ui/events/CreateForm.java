@@ -1,6 +1,7 @@
 package de.goldmann.portfolio.ui.events;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 
@@ -77,7 +78,7 @@ public class CreateForm extends AbstractCustomLayout {
 
         com.vaadin.ui.JavaScript.getCurrent().addFunction(EDIT_SAVE_FUNCTION, arguments ->
         {
-            final Double priceLimit = Double.parseDouble(arguments.getString(0));
+            final BigDecimal priceLimit = new BigDecimal(arguments.getString(0));
             final String comment = arguments.getString(1);
             final StockData stock = (StockData) isinCmb.getValue();
             final PriceLimitDirection priceLimitDirection = (PriceLimitDirection) priceLimitDirectionCombobox

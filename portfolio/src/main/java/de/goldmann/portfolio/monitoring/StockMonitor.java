@@ -13,8 +13,6 @@ import de.goldmann.portfolio.domain.PriceLimitDirection;
 import de.goldmann.portfolio.domain.repository.MonitorEventRepository;
 import de.goldmann.portfolio.services.MailService;
 import de.goldmann.portfolio.services.YahooFinanceService;
-import yahoofinance.Stock;
-import yahoofinance.quotes.stock.StockQuote;
 
 public class StockMonitor {
 
@@ -43,27 +41,16 @@ public class StockMonitor {
 
         for (final MonitorEvent event : monitorEventRepository.findAll()) {
             final String searchKey = event.getStock().getSearchKey();
-            final Stock stock = yahooFinanceService.getStock(searchKey);
-            if (stock == null) {
-                LOGGER.info("Keinen Eintrag mit SearchKey '" + searchKey + "' gefunden");
-                continue;
-            }
-            LOGGER.info("Monitored '" + stock.getName() + "' ...");
 
-            final StockQuote quote = stock.getQuote();
-            double actualPrice = 0.0;
+            LOGGER.info("Monitored '" + yahooFinanceService.getName(searchKey) + "' ...");
 
-            if (quote != null) {
-                final BigDecimal price = quote.getPrice();
-                if (price != null) {
-                    actualPrice = price.doubleValue();
-                }
-            }
-            final double priceLimit = event.getPriceLimit();
+            final BigDecimal actualPrice = yahooFinanceService.getPrice(searchKey);
+
+            final BigDecimal priceLimit = event.getPriceLimit();
 
             switch (event.getPriceLimitDirection()) {
                 case EXCEEDED:
-                    if (actualPrice > priceLimit) {
+                    if (actualPrice.doubleValue() > priceLimit.doubleValue()) {
                         mailService.sendMail(
                                 "Der Preis von "
                                         + event.getStock()
@@ -80,7 +67,7 @@ public class StockMonitor {
                     }
                     break;
                 case UNDERCUTTED:
-                    if (actualPrice < priceLimit) {
+                    if (actualPrice.doubleValue() < priceLimit.doubleValue()) {
                         mailService.sendMail(
                                 "Der Preis von "
                                         + event.getStock()
