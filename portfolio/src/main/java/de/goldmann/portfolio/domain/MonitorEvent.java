@@ -1,6 +1,7 @@
 package de.goldmann.portfolio.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -46,7 +47,7 @@ public class MonitorEvent implements Serializable {
     private String comment;
 
     @Column(name = "pricelimit", nullable = false)
-    private double priceLimit;
+    private BigDecimal priceLimit;
 
     @Column(name = "pricelimitdirection", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -63,7 +64,10 @@ public class MonitorEvent implements Serializable {
 
     public MonitorEvent() {}
 
-    public MonitorEvent(final StockData stock, final String comment, final double priceLimit,
+    public MonitorEvent(
+        final StockData stock,
+        final String comment,
+        final BigDecimal priceLimit,
             final PriceLimitDirection priceLimitDirection, final HumanUser user) {
         this.stock = stock;
         this.comment = comment;
@@ -85,7 +89,7 @@ public class MonitorEvent implements Serializable {
         return comment;
     }
 
-    public double getPriceLimit() {
+    public BigDecimal getPriceLimit() {
         return priceLimit;
     }
 
@@ -105,7 +109,7 @@ public class MonitorEvent implements Serializable {
         this.comment = comment;
     }
 
-    public void setPriceLimit(final double priceLimit) {
+    public void setPriceLimit(final BigDecimal priceLimit) {
         this.priceLimit = priceLimit;
     }
 

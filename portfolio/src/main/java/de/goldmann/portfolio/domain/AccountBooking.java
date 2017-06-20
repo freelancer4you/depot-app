@@ -31,7 +31,7 @@ public class AccountBooking implements Serializable {
         Objects.requireNonNull(id);
         Objects.requireNonNull(description);
         this.id = id;
-        this.description = description;
+        this.description = description.replace("\"", "");
     }
 
     public AccountBookingId getId() {
@@ -40,6 +40,13 @@ public class AccountBooking implements Serializable {
 
     public String getDescription() {
         return description;
+    }
+
+    public boolean isNecessaryForCalculation() {
+        return description.contains("Dividende")
+                || description.contains("Transaktionsgebühr")
+                || description.contains("Verkauf")
+                || description.contains("Kauf");
     }
 
     @Override
@@ -83,5 +90,8 @@ public class AccountBooking implements Serializable {
                 + "]";
     }
 
+    public boolean isFee() {
+        return "Transaktionsgebühr".equals(description) || "Dividendensteuer".equals(description);
+    }
 
 }

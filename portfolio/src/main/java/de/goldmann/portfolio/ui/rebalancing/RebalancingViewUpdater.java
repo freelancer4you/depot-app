@@ -2,8 +2,6 @@ package de.goldmann.portfolio.ui.rebalancing;
 
 import java.util.Iterator;
 
-import org.springframework.core.env.Environment;
-
 import com.vaadin.ui.JavaScript;
 import com.vaadin.ui.Label;
 
@@ -13,20 +11,18 @@ import de.goldmann.portfolio.domain.StockData;
 import de.goldmann.portfolio.domain.StockType;
 import de.goldmann.portfolio.domain.StockWithinDepot;
 import de.goldmann.portfolio.services.YahooFinanceService;
-import yahoofinance.Stock;
 
 public class RebalancingViewUpdater {
 
     private final DepotCallback callback;
     private final YahooFinanceService yahooFinaceService;
-    private final Environment         env;
     private final RebalancingView     rebalancingView;
 
-    public RebalancingViewUpdater(final DepotCallback callback, final YahooFinanceService yahooFinaceService,
-            final Environment env, final RebalancingView rebalancingView) {
+    public RebalancingViewUpdater(final DepotCallback callback, 
+            final YahooFinanceService yahooFinaceService,
+            final RebalancingView rebalancingView) {
         this.callback = callback;
         this.yahooFinaceService = yahooFinaceService;
-        this.env = env;
         this.rebalancingView = rebalancingView;
     }
 
@@ -47,27 +43,21 @@ public class RebalancingViewUpdater {
         for (final StockWithinDepot stockWithinDepot : depot.getStocks()) {
             final StockData stockData = stockWithinDepot.getStockData();
             if (StockType.ETF.equals(stockData.getStockType())) {
-                final Stock stock = yahooFinaceService.getStock(stockData.getSearchKey());
-                double price = 0.0;
-                if (!Utils.isDevMode(env)) {
-                    price = stock.getQuote().getPrice().doubleValue();
-                } else {
-                    price = Utils.getRandomPrice();
-                }
 
                 final double percentage = stockWithinDepot.getRebalancingDetails().getPercentage();
-                final double amount = Utils.round(stockWithinDepot.getAnzahl() * price, 2);
+                final double amount = yahooFinaceService.getAmount(stockWithinDepot.getAnzahl(),
+                                                                   stockData.getSearchKey());
                 JavaScript.getCurrent()
                 .execute(
-                        "addRow(0,{position:'"
-                                + stockData.getName()
-                                + "', percentage:'"
-                                + percentage
-                                + "', amount:'"
-                                + amount
-                                + "', isin:'"
-                                + stockData.getIsin()
-                                + "'})"
+                         "addRow(0,{position:'"
+                                 + stockData.getName()
+                                 + "', percentage:'"
+                                 + percentage
+                                 + "', amount:'"
+                                 + amount
+                                 + "', isin:'"
+                                 + stockData.getIsin()
+                                 + "'})"
                         );
                 etfBetrag += amount;
                 totalPercentage += percentage;
@@ -90,15 +80,8 @@ public class RebalancingViewUpdater {
             final StockWithinDepot stockWithinDepot = stocksIt.next();
             if (StockType.AKTIE.equals(stockWithinDepot.getStockData().getStockType()))
             {
-                final Stock stock = yahooFinaceService.getStock(stockWithinDepot.getStockData().getSearchKey());
-                if (!Utils.isDevMode(env))
-                {
-                    amount += stockWithinDepot.getAnzahl() * stock.getQuote().getPrice().doubleValue();
-                }
-                else
-                {
-                    amount += stockWithinDepot.getAnzahl() * Utils.getRandomPrice();
-                }
+                amount += yahooFinaceService.getAmount(stockWithinDepot.getAnzahl(),
+                                                       stockWithinDepot.getStockData().getSearchKey());
             }
         }
         return amount;

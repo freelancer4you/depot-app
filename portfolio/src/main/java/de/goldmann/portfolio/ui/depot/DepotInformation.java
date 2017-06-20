@@ -1,10 +1,14 @@
 package de.goldmann.portfolio.ui.depot;
 
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 import de.goldmann.portfolio.domain.Depot;
+import de.goldmann.portfolio.services.AccountBookingReadingService;
 
 public class DepotInformation extends VerticalLayout {
 
@@ -20,7 +24,7 @@ public class DepotInformation extends VerticalLayout {
     private final Label       cashFundsLbl;
     private final Label       differenceLbl;
 
-    public DepotInformation() {
+    public DepotInformation(final AccountBookingReadingService accountBookingReadingService, final UI mainUi) {
         setSpacing(true);
         final HorizontalLayout firstRow = new HorizontalLayout();
         firstRow.setSpacing(true);
@@ -40,6 +44,15 @@ public class DepotInformation extends VerticalLayout {
         secondRow.addComponent(differenceLbl);
         addComponent(secondRow);
 
+        final HorizontalLayout uploadRow = new HorizontalLayout();
+        uploadRow.setSpacing(true);
+        final Button uploadBtn = new Button("Update Depot");
+        uploadBtn.addClickListener(e -> {
+            UI.getCurrent().addWindow(new UploadWindow(accountBookingReadingService, mainUi));
+        });
+        uploadRow.addComponent(uploadBtn);
+        addComponent(uploadRow);
+        setComponentAlignment(uploadRow, Alignment.TOP_RIGHT);
     }
 
     public void updateView(final Depot depot) {

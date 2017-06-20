@@ -1,9 +1,11 @@
 package de.goldmann.portfolio.ui.stocks.details;
 
+import java.math.BigDecimal;
+import java.util.Objects;
+
 import com.vaadin.data.util.ObjectProperty;
 
 import de.goldmann.portfolio.Utils;
-import yahoofinance.Stock;
 
 public class InfoBarBinding {
 
@@ -23,10 +25,10 @@ public class InfoBarBinding {
         return priceProperty;
     }
 
-    public void update(final Stock stock, final String name) {
-        this.nameProperty.setValue(stock.getName() != null && stock.getName().length() > 0 
-                ? stock.getName()
-                : name);
-        this.priceProperty.setValue(Utils.round(stock.getQuote().getPrice(), 2));
+    public void update(final String name, final BigDecimal price) {
+        Objects.requireNonNull(name, "name");
+        Objects.requireNonNull(price, "price");
+        this.nameProperty.setValue(name);
+        this.priceProperty.setValue(Utils.round(price, 2));
     }
 }

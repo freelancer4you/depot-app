@@ -12,18 +12,18 @@ import de.goldmann.portfolio.ui.depot.DepotView;
 public class ButtonBar extends HorizontalLayout {
 
     public ButtonBar(
-        final UI mainUi) {
+            final UI mainUi) {
         super();
         final Button backBtn = new Button("Zurück zur Übersicht");
         backBtn.setWidth("20%");
         backBtn.setStyleName(BaseTheme.BUTTON_LINK);
+
         backBtn.addClickListener(e -> {
             mainUi.getNavigator().navigateTo(DepotView.VIEW_NAME);
         });
 
         addComponent(backBtn);
         setComponentAlignment(backBtn, Alignment.MIDDLE_LEFT);
-
     }
 
 }

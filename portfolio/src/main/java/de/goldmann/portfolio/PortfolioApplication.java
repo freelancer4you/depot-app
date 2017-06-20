@@ -1,7 +1,5 @@
 package de.goldmann.portfolio;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
@@ -14,13 +12,9 @@ import org.springframework.security.config.annotation.method.configuration.Globa
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import de.goldmann.portfolio.config.VaadinSessionSecurityContextHolderStrategy;
-import de.goldmann.portfolio.services.AccountBookingReadingService;
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-public class PortfolioApplication implements CommandLineRunner {
-
-    @Autowired
-    private AccountBookingReadingService accountBookingReadingService;
+public class PortfolioApplication {
 
     @Configuration
     @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -51,10 +45,5 @@ public class PortfolioApplication implements CommandLineRunner {
     public static void main(final String[] args) {
         SpringApplication.run(PortfolioApplication.class, args);
 
-    }
-
-    @Override
-    public void run(final String... args) throws Exception {
-        this.accountBookingReadingService.readAndSaveBookingData();
     }
 }

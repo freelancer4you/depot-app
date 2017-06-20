@@ -1,0 +1,8 @@
+Überwachung: DAX, DOW, NASDAQU, NYSE ARCA GOLD BUGS INDEX, VDAX
+Möglichkeit zur Editierung der SearchKeys
+Möglichkeit zur Aktualisierung der Buchungen (AccountBooking), d.h. über eine Upload sollte Account.csv
+hochgeladen werden können und somit die Tabelle AccountBooking aktualisieren
+Möglichkeit zur Anlage neuer StockData-Einträge
+Ermitteln der KGV(Kurs-Gewinn-Verhältnis (KGV) (englisch Price-Earnings-Ratio (PER) oder P/E Ratio)) einer Aktie
+Warnung wenn Aktie mehr als X-Prozent fällt
+Aktie: Sotheby (US8358981079) --> Indikator für Gesamtwirtschaft

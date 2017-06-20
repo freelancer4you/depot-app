@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -45,10 +46,6 @@ public class AccountBookingReader {
             }
 
             if (start != null && end != null) {
-                // if (!PARTS_TO_SKIP.contains(partCounter)) {
-                // System.out.println(start + PortfolioConstants.CSV_SEPERATOR +
-                // end);
-                // }
                 if (partCounter == 4) {
                     description = start + PortfolioConstants.CSV_SEPERATOR + end;
                 }
@@ -65,13 +62,11 @@ public class AccountBookingReader {
                 if (partCounter == 4) {
                     description = part;
                 }
-                // if (!PARTS_TO_SKIP.contains(partCounter)) {
-                // System.out.println(string);
-                // }
                 partCounter++;
             }
         }
-        if(isin == null || date == null){
+        if (StringUtils.isEmpty(isin) || date == null)
+        {
             return Optional.empty();
         }
         return Optional.of(new AccountBooking(new AccountBookingId(isin, date, amount), description));

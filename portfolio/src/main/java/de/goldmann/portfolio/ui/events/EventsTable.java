@@ -17,12 +17,11 @@ public class EventsTable extends Table {
     public EventsTable(final LazyQueryContainer dataSource, final EventsResolver eventsResolver) {
         super("Alarme");
         this.eventsResolver = Objects.requireNonNull(eventsResolver, "eventsResolver");
-        setWidth("100%");
+
         setContainerDataSource(dataSource);
         setVisibleColumns(MonitorEvent.STOCKDATA_NAME, MonitorEvent.COMMENT);
         setColumnHeader(MonitorEvent.STOCKDATA_NAME, "Name");
         setColumnHeader(MonitorEvent.COMMENT, "Kommentar");
-        // setColumnHeader(MonitorEvent.PRICE_LIMIT, "Preis");
         addGeneratedColumn("Bedingung", new ConditionColumn(dataSource, eventsResolver));
         addGeneratedColumn("Aktionen", new EventsTableActionColumn(dataSource, eventsResolver));
 

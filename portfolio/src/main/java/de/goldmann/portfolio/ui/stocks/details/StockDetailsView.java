@@ -1,5 +1,6 @@
 package de.goldmann.portfolio.ui.stocks.details;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -19,11 +20,11 @@ import de.goldmann.portfolio.domain.repository.StockWithinDepotRepository;
 import de.goldmann.portfolio.services.YahooFinanceService;
 import de.goldmann.portfolio.ui.booking.AccountBookingResolver;
 import de.goldmann.portfolio.ui.booking.AccountBookingTable;
+import de.goldmann.portfolio.ui.booking.AmountColumnGenerator;
 import de.goldmann.portfolio.ui.events.EventsContainer;
 import de.goldmann.portfolio.ui.events.EventsResolver;
 import de.goldmann.portfolio.ui.events.EventsTable;
-import de.goldmann.portfolio.ui.history.OrderHistoryTable;
-import yahoofinance.Stock;
+import yahoofinance.quotes.stock.StockDividend;
 
 @SuppressWarnings("serial")
 @UIScope
@@ -31,7 +32,6 @@ import yahoofinance.Stock;
 public class StockDetailsView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "stockDetails";
-    private final OrderHistoryTable historyTable;
     private final EventsTable eventsTable;
     private final StockWithinDepotRepository stockWithinDepotRepository;
     private final YahooFinanceService financeService;
@@ -47,14 +47,13 @@ public class StockDetailsView extends VerticalLayout implements View {
             final EventsResolver eventsResolver,
             final AccountBookingResolver accountBookingResolver) {
         super();
+        setSpacing(true);
 
         Objects.requireNonNull(em, "em");
         this.stockWithinDepotRepository = Objects.requireNonNull(stockWithinDepotRepository,
                 "stockWithinDepotRepository");
         this.financeService = Objects.requireNonNull(financeService, "financeService");
-        Objects.requireNonNull(em, "em");
 
-        setSpacing(true);
         addComponent(new ButtonBar(mainUi));
         binder = new InfoBarBinding();
         addComponent(new InfoBar(binder));
@@ -63,12 +62,10 @@ public class StockDetailsView extends VerticalLayout implements View {
         tableLayout.setWidth("100%");
         final VerticalLayout historyLayout = new VerticalLayout();
         historyLayout.setWidth("75%");
+        historyLayout.setSpacing(true);
         tableLayout.addComponent(historyLayout);
 
-        historyTable = new OrderHistoryTable(em);
-        historyLayout.addComponent(historyTable);
-
-        accountBookingTable = new AccountBookingTable(accountBookingResolver);
+        accountBookingTable = new AccountBookingTable(accountBookingResolver, new AmountColumnGenerator());
         historyLayout.addComponent(accountBookingTable);
 
         eventsTable = new EventsTable(new EventsContainer(eventsResolver, ""), eventsResolver);
@@ -99,15 +96,20 @@ public class StockDetailsView extends VerticalLayout implements View {
 
                 final Optional<StockWithinDepot> stockWithinDepotOpt = stockWithinDepotRepository.findByStockIsin(isin);
                 if (stockWithinDepotOpt.isPresent()) {
-                    historyTable.update(isin);
+                    // historyTable.update(isin);
                     eventsTable.update(isin);
                     accountBookingTable.update(isin);
 
                     final StockWithinDepot stockWithinDepot = stockWithinDepotOpt.get();
                     final StockData stockData = stockWithinDepot.getStockData();
-                    final Stock stock = financeService.getStock(stockData.getSearchKey());
-                    binder.update(stock, stockData.getName());
-                    detailsTable.update(stockWithinDepot, stock);
+                    final String searchKey = stockData.getSearchKey();
+                    final String name = financeService.getName(searchKey);
+                    final BigDecimal price = financeService.getPrice(searchKey);
+                    binder.update(name, price);
+
+                    final double amount = financeService.getAmount(stockWithinDepot.getAnzahl(), searchKey);
+                    final StockDividend dividend = financeService.getDividend(searchKey);
+                    detailsTable.update(stockWithinDepot, amount, dividend);
                 }
                 else {
                     throw new IllegalArgumentException("Unknown Stock with ISIN:" + isin);

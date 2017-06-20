@@ -1,6 +1,8 @@
 package de.goldmann.portfolio.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -12,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.apache.commons.lang3.math.NumberUtils;
 
 @Entity
 @Table(name = "stock")
@@ -35,7 +39,7 @@ public class StockWithinDepot implements Serializable {
     private Long              id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "STOCKDATA_ISIN")
+    @JoinColumn(name = "STOCKDATA_ISIN", nullable = false)
     private StockData         stockData;
 
     private int               anzahl;
@@ -50,8 +54,11 @@ public class StockWithinDepot implements Serializable {
     @Embedded
     private RebalancingDetails rebalancingDetails;
 
-    public StockWithinDepot() {
-        super();
+    StockWithinDepot() {}
+
+    public StockWithinDepot(final StockData stockData, final Depot depot) {
+        this.stockData = Objects.requireNonNull(stockData, "stockData cannot be null");
+        this.depot = Objects.requireNonNull(depot, "depot cannot be null");
     }
 
     public Long getId() {
@@ -125,6 +132,39 @@ public class StockWithinDepot implements Serializable {
                 + ", "
                 + (depot != null ? "depot=" + depot : "")
                 + "]";
+    }
+
+    public void updateAmout(final String description) {
+        // "Kauf 35 zu je 2,28"
+        // "Verkauf 2 zu je 150,61"
+        final String[] splittedDesc = description.split(" ");
+        OrderAction orderAction = null;
+        int orderCount = 0;
+        if (splittedDesc.length > 0) {
+            if (OrderAction.BUY.getWindowCaption().equals(splittedDesc[0])) {
+                orderAction = OrderAction.BUY;
+            }
+            if (OrderAction.SELL.getWindowCaption().equals(splittedDesc[0])) {
+                orderAction = OrderAction.SELL;
+            }
+            if (splittedDesc.length > 1 && NumberUtils.isNumber(splittedDesc[1])) {
+                orderCount = new BigDecimal(splittedDesc[1]).intValue();
+            }
+        }
+        if (orderAction != null) {
+            // System.out.println(isin + " " + orderAction + ": " +
+            // orderCount);
+            switch (orderAction) {
+                case BUY:
+                    setAnzahl(getAnzahl() + orderCount);
+                    break;
+                case SELL:
+                    setAnzahl(getAnzahl() - orderCount);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
 }

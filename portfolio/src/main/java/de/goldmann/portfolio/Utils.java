@@ -38,4 +38,11 @@ public final class Utils {
         final BigDecimal scaledValue = value.setScale(places, RoundingMode.HALF_UP);
         return scaledValue.doubleValue();
     }
+
+    public static BigDecimal roundBigDecimal(final BigDecimal value, final int places) {
+        if (places < 0) {
+            throw new IllegalArgumentException();
+        }
+        return value.setScale(places, RoundingMode.HALF_UP);
+    }
 }

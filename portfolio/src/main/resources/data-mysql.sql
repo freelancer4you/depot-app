@@ -145,8 +145,8 @@ insert into stockdata(name,isin,wkn,searchkey,currency,leadingindex_id,stocktype
 
 
 --Benutzer
-insert into benutzer(id, email, passwort) values(1, 'system@freenet.de', '12345')
-insert into benutzer(id, email, passwort) values(2, 'goldi23@freenet.de', '12345')
+insert into benutzer(id, email, passwort) values(1, 'system@freenet.de', '12345');
+insert into benutzer(id, email, passwort) values(2, 'goldi23@freenet.de', '12345');
 
 -- Depots
 insert into depots(id, name, humanuser_id, seedcapital, stockspercentage, cashpercentage, cashamount) values(1, 'Aktuell', 2, 6000.0, 10, 6, 100.0);

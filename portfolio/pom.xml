@@ -163,6 +163,11 @@
 			<artifactId>jasypt-spring-boot-starter</artifactId>
 			<version>1.8</version>
 		</dependency>
+		
+		<dependency>
+             <groupId>mysql</groupId>
+             <artifactId>mysql-connector-java</artifactId>
+         </dependency>
 
 		<!-- dependency>
 			<groupId>org.vaadin.addons</groupId>
@@ -224,41 +229,30 @@
 	</dependencyManagement>
 
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<!-- plugin>
-				<groupId>com.vaadin</groupId>
-				<artifactId>vaadin-maven-plugin</artifactId>
-				<version>${vaadin.plugin.version}</version>
-
-				<configuration>
-					<extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
-					<webappDirectory>${basedir}/target/classes/VAADIN/widgetsets</webappDirectory>
-					<draftCompile>false</draftCompile>
-					<compileReport>false</compileReport>
-					<style>OBF</style>
-					<strict>true</strict>
-				</configuration>
-
-				<executions>
-					<execution>
-						<goals>
-							
-							<goal>clean</goal>
-							<goal>resources</goal>
-							<goal>update-theme</goal>
-							<goal>update-widgetset</goal>
-							<goal>compile-theme</goal>
-							<goal>compile</goal>
-
-						</goals>
-					</execution>
-				</executions>
-			</plugin-->
-		</plugins>
-	</build>
+        <finalName>depot-app</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>  
+            <!-- plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin-->
+        </plugins>
+    </build>
 
 </project>

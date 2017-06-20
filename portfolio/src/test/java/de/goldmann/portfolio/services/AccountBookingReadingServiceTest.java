@@ -2,6 +2,8 @@ package de.goldmann.portfolio.services;
 
 import static org.junit.Assert.assertEquals;
 
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Properties;
 
@@ -33,8 +35,8 @@ public class AccountBookingReadingServiceTest {
     AccountBookingRepository repo;
 
     @Test
-    public void readCsv() {
-        service.readAndSaveBookingData();
+    public void readCsv() throws URISyntaxException {
+        service.readAndSaveBookingData(Paths.get(ClassLoader.getSystemResource("AccountTest.csv").toURI()));
 
         assertEquals(1, repo.count());
         final AccountBooking bookingEntry = repo.findAll().get(0);

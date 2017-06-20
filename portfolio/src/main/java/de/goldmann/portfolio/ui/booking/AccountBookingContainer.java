@@ -5,7 +5,6 @@ import static de.goldmann.portfolio.PortfolioConstants.BATCH_SIZE_LAZYQUERYCONTA
 import static de.goldmann.portfolio.PortfolioConstants.COMPOSITE_ITEMS;
 import static de.goldmann.portfolio.PortfolioConstants.DETACHED_ENTITIES;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import org.vaadin.addons.lazyquerycontainer.EntityQueryDefinition;
@@ -32,7 +31,6 @@ public class AccountBookingContainer extends LazyQueryContainer {
         this.addContainerProperty(AccountBooking.ID_ISIN, String.class, null, true, true);
         this.addContainerProperty(AccountBooking.ID_DATE, LocalDate.class, null, true, true);
         this.addContainerProperty(AccountBooking.DESCRIPTION, String.class, null, true, true);
-        this.addContainerProperty(AccountBooking.AMOUNT, BigDecimal.class, null, true, true);
     }
     
 }

@@ -1,5 +1,5 @@
 server:
-    port: 9000
+    port: 9001
     session.timeout: 300
     context-path: /portfolio
 spring:
@@ -10,8 +10,8 @@ spring:
       password: ENC(a4RmqdcQHOe1MXpaK3bDv6d35W1Witay)
       username: info@andre-goldmann.de
       port: 465
-      from: info@computing-for-kids.de
-      subject: Portfolio-Monitor
+      from: info@depot-appp.de
+      subject: Depot-Monitor
       to: goldi23@freenet.de        
 logging:
   level:
@@ -30,25 +30,23 @@ server:
 
 spring:
     profiles: production
-#    datasource:
-#      driver-class-name: com.mysql.jdbc.Driver 
-#      url:  jdbc:mysql://localhost:3306/portfolio
-#      username: portfolio
-#      password:  ENC(0rLh75nem1Q2ZK74T6Vq+IZmyy/a3Gyj)
-#    jpa:
-#      database-platform: org.hibernate.dialect.MySQL5Dialect
-#      show-sql:  false       
-#       driver-class-name: org.h2.Driver 
-#       url:  jdbc:h2:file:./data/sample
-#      username: portfolio
-#      password:  ENC(0rLh75nem1Q2ZK74T6Vq+IZmyy/a3Gyj)
-#    jpa:
-#       database-platform: org.hibernate.dialect.H2Dialect
-#      show-sql:  false
-#       hibernate:
-#        ddl-auto: update     
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      # Prod cfk 
+      url:  jdbc:mysql://localhost:3306/depot
+      username: cfk
+      password:  ENC(0rLh75nem1Q2ZK74T6Vq+IZmyy/a3Gyj)
+      #Lokal root
+      #url:  jdbc:mysql://localhost:3306/depot
+      #username: root
+      #password:  ENC(ueoCZdq3VIG/gGvuHpDj9IOj/N2nHU13)
+    jpa:
+      database-platform: org.hibernate.dialect.MySQL5Dialect
+      show-sql:  false
+      hibernate:
+        ddl-auto: update     
 server:
-    port: 9000
+    port: 9001
    
 
 # We don't want Vaadin's heart beat signal to keep the session alive

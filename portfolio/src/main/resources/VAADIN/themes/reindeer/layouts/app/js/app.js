@@ -3310,7 +3310,6 @@ function de_goldmann_portfolio_ui_JsHighChart()
 function de_goldmann_portfolio_ui_PieChart(){
 	
 	var element = $(this.getElement());
-	    // getData
 	var title = this.getState().title;
 	var chartData = this.getState().data;
 	var units = this.getState().units;
@@ -3338,7 +3337,7 @@ function de_goldmann_portfolio_ui_PieChart(){
 	                type: 'pie'
 	            },
 	            title: {
-	                text: 'Browser market shares January, 2015 to May, 2015'
+	                text: title
 	            },
 	            tooltip: {
 	                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -3369,15 +3368,12 @@ function de_goldmann_portfolio_ui_PieChart(){
                     y: 0.0
                 }]
             };
-	    console.log(series.data);
 	    
 	    $.each(myArr, function(lineNo, line) {
 	    	series.data.push({name : line.name, y : line.y})    
         });
 	    series.data.splice(0, 1);
 	    options.series.push(series);
-//	    console.log("################");
-//	    console.log(options.series);   
 	     // Create the chart
 	     var chart = new Highcharts.Chart(options);
 	}
