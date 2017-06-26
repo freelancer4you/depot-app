@@ -6,9 +6,9 @@ import com.vaadin.ui.ComboBox;
 import de.goldmann.portfolio.ui.StockDataSuggestingContainer.SuggestionFilter;
 
 @SuppressWarnings("serial")
-public class SuggestingComboBox extends ComboBox {
+public class StockSuggestingComboBox extends ComboBox {
 
-    public SuggestingComboBox(final String caption) {
+    public StockSuggestingComboBox(final String caption) {
         super(caption);
         // the item caption mode has to be PROPERTY for the filtering to work
         setItemCaptionMode(ItemCaptionMode.PROPERTY);
@@ -17,7 +17,7 @@ public class SuggestingComboBox extends ComboBox {
         setItemCaptionPropertyId("name");
     }
 
-    public SuggestingComboBox() {
+    public StockSuggestingComboBox() {
         this(null);
     }
 
@@ -29,6 +29,6 @@ public class SuggestingComboBox extends ComboBox {
      */
     @Override
     protected Filter buildFilter(final String filterString, final FilteringMode filteringMode) {
-        return new StockDataSuggestingContainer.SuggestionFilter(filterString);
+        return new StockSuggestingContainer.SuggestionFilter(filterString);
     }
 }

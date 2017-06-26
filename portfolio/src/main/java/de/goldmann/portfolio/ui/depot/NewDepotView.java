@@ -23,17 +23,16 @@ import de.goldmann.portfolio.domain.HumanUser;
 import de.goldmann.portfolio.domain.repository.DepotRepository;
 import de.goldmann.portfolio.domain.repository.HumanUserRepository;
 import de.goldmann.portfolio.ui.AbstractCustomLayout;
-import de.goldmann.portfolio.ui.MenuBar;
 import freemarker.core.ParseException;
 import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.Template;
 import freemarker.template.TemplateNotFoundException;
 
+@SuppressWarnings("serial")
 @UIScope
 @SpringView(name = NewDepotView.VIEW_NAME)
 public class NewDepotView extends AbstractCustomLayout implements View {
 
-    private static final long  serialVersionUID = 1L;
     public static final String VIEW_NAME        = "newDepotView";
     private static final String DEPOT_FORM_HTML  = "depot-form.html";
     private static final String CREATE_FUNCTION  = "de.goldmann.portfolio.ui.depot.create";
@@ -65,7 +64,6 @@ public class NewDepotView extends AbstractCustomLayout implements View {
                                                 humanUser.get()
                                                 )
                                         );
-//                        menuBar.update(depot);
                         Page.getCurrent().getJavaScript().execute("addDepotListEntry('" + depot.getName() + "')");
                     }
                     else

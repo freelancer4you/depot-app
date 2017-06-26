@@ -8,6 +8,8 @@ import com.vaadin.ui.VerticalLayout;
 
 import de.goldmann.portfolio.csv.CsvReader;
 import de.goldmann.portfolio.domain.StockType;
+import de.goldmann.portfolio.domain.repository.LeadingIndexRepository;
+import de.goldmann.portfolio.domain.repository.StockDataRepository;
 import de.goldmann.portfolio.domain.repository.StockWithinDepotRepository;
 import de.goldmann.portfolio.services.YahooFinanceService;
 import de.goldmann.portfolio.ui.depot.DepotValidationLayout;
@@ -22,16 +24,18 @@ public class StocksView extends HorizontalLayout {
             final YahooFinanceService yahooFinanceService,
             final StockType stockType,
             final UI mainUi,
-            final CsvReader csvReader) {
+            final CsvReader csvReader, 
+            final StockDataRepository stockDataRepo,
+            final LeadingIndexRepository leadingIndexRepo) {
         super();
         setSpacing(true);
 
         stocksTable = new StocksTable(
-                                      em,
-                                      yahooFinanceService,
-                                      stockType,
-                                      stockWithinDepotRepository,
-                                      mainUi);
+                em,
+                yahooFinanceService,
+                stockType,
+                stockWithinDepotRepository,
+                mainUi);
 
         final VerticalLayout stocksTableLayout = new VerticalLayout();
         stocksTableLayout.setSpacing(true);
@@ -40,7 +44,7 @@ public class StocksView extends HorizontalLayout {
         stocksTableLayout.addComponent(new DepotValidationLayout(stockWithinDepotRepository, csvReader));
         addComponent(stocksTableLayout);
 
-        addComponent(new StocksOverView(stockWithinDepotRepository));
+        addComponent(new StocksOverView(stockWithinDepotRepository, stockDataRepo, yahooFinanceService, leadingIndexRepo));
     }
 
     public void update(final String depotName) {

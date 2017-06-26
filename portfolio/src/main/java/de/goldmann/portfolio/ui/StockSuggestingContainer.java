@@ -1,14 +1,14 @@
 package de.goldmann.portfolio.ui;
 
-import java.util.List;
+import java.util.Collection;
 
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.data.util.filter.UnsupportedFilterException;
 
-import de.goldmann.portfolio.domain.StockData;
-import de.goldmann.portfolio.domain.repository.StockDataRepository;
+import de.goldmann.portfolio.services.YahooFinanceService;
+import yahoofinance.Stock;
 
 /**
  * This is a specialized {@link BeanItemContainer} which redefines the filtering
@@ -17,21 +17,21 @@ import de.goldmann.portfolio.domain.repository.StockDataRepository;
  * This method is called internally by the filtering code of a ComboBox.
  */
 @SuppressWarnings("serial")
-public class SuggestingContainer extends BeanItemContainer<StockData> {
+public class StockSuggestingContainer extends BeanItemContainer<Stock> {
 
-    private StockData defaultStock;
-    private final StockDataRepository service;
+    private Stock defaultStock;
+    private final YahooFinanceService service;
 
-    public SuggestingContainer(final StockDataRepository service) throws IllegalArgumentException {
-        super(StockData.class);
+    public StockSuggestingContainer(final YahooFinanceService service) throws IllegalArgumentException {
+        super(Stock.class);
         this.service = service;
     }
 
-    public SuggestingContainer(final StockDataRepository service, final StockData defaultCountry)
+    public StockSuggestingContainer(final YahooFinanceService service, final Stock defaultCountry)
             throws IllegalArgumentException {
         this(service);
         addBean(defaultCountry);
-        this.defaultStock = defaultCountry;
+        defaultStock = defaultCountry;
     }
 
     /**
@@ -68,7 +68,7 @@ public class SuggestingContainer extends BeanItemContainer<StockData> {
         }
 
         removeAllItems();
-        final List<StockData> stocks = service.finByIsin(filterString.toUpperCase());
+        final Collection<Stock> stocks = service.finBySymbol(filterString.toUpperCase());
         addAll(stocks);
     }
 
@@ -78,7 +78,7 @@ public class SuggestingContainer extends BeanItemContainer<StockData> {
      * arrow icon. If such a method is omitted, the dropdown list will contain
      * the most recently suggested items.
      */
-    public void setSelectedStockData(final StockData country) {
+    public void setSelectedStock(final Stock country) {
         removeAllItems();
         addBean(country);
     }
@@ -86,7 +86,7 @@ public class SuggestingContainer extends BeanItemContainer<StockData> {
     /**
      * The sole purpose of this {@link Filter} implementation is to transport
      * the current filterString (which is a private property of ComboBox) to our
-     * custom container implementation {@link SuggestingContainer}. Our
+     * custom container implementation {@link StockSuggestingContainer}. Our
      * container needs that filterString in order to fetch a filtered country
      * list from the database.
      */

@@ -3,6 +3,8 @@ package de.goldmann.portfolio.services;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -147,5 +149,18 @@ public class YahooFinanceServiceImpl extends AbstractYahooFinanceService {
         }
     }
 
+    @Override
+    public Collection<Stock> finBySymbol(final String symbol) {
+        try
+        {
+            return requestStocks(new String[] { symbol }).values();
+        }
+        catch (final IOException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return Collections.EMPTY_LIST;
+    }
 
 }

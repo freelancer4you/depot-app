@@ -19,7 +19,7 @@ import de.goldmann.portfolio.domain.StockData;
 import de.goldmann.portfolio.ui.AbstractCustomLayout;
 import de.goldmann.portfolio.ui.PriceLimitDirectionCombobox;
 import de.goldmann.portfolio.ui.SuggestingComboBox;
-import de.goldmann.portfolio.ui.SuggestingContainer;
+import de.goldmann.portfolio.ui.StockDataSuggestingContainer;
 import de.goldmann.portfolio.ui.rebalancing.RebalancingViewUpdater.DepotCallback;
 import freemarker.core.ParseException;
 import freemarker.template.MalformedTemplateNameException;
@@ -45,7 +45,7 @@ public class CreateForm extends AbstractCustomLayout {
             final DepotCallback depotCallback) {
         super();
 
-        final SuggestingContainer container = new SuggestingContainer(eventsResolver.getStockDataRepository());
+        final StockDataSuggestingContainer container = new StockDataSuggestingContainer(eventsResolver.getStockDataRepository());
         final SuggestingComboBox isinCmb = new SuggestingComboBox("");
         isinCmb.setImmediate(true);
         isinCmb.addValueChangeListener(new Property.ValueChangeListener() {

@@ -13,9 +13,8 @@ import de.goldmann.portfolio.domain.OrderAction;
 import de.goldmann.portfolio.domain.StockWithinDepot;
 import de.goldmann.portfolio.ui.order.OrderController;
 
+@SuppressWarnings("serial")
 public class StocksTableActionColumn implements ColumnGenerator {
-
-    private static final long                serialVersionUID = 1L;
 
     private transient final OrderController orderController;
 
@@ -23,6 +22,7 @@ public class StocksTableActionColumn implements ColumnGenerator {
         this.orderController = Objects.requireNonNull(orderController, "orderController");
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Component generateCell(final Table source, final Object itemId, final Object columnId) {
 

@@ -26,11 +26,8 @@ public class LeadingIndex implements Serializable {
     @Column(nullable = false, unique = true)
     private String            name;
 
-    @Column(unique = true)
+    @Column(unique = true, length = StockData.ISIN_MAX_LENGTH)
     private String            isin;
-
-    @Column(unique = true)
-    private String            wkn;
 
     @Column(nullable = false, name = "searchkey")
     private String            searchKey;
@@ -53,7 +50,6 @@ public class LeadingIndex implements Serializable {
         return "Index ["
                 + (name != null ? "name=" + name + ", " : "")
                 + (isin != null ? "isin=" + isin + ", " : "")
-                + (wkn != null ? "wkn=" + wkn + ", " : "")
                 + (searchKey != null ? "searchKey=" + searchKey : "")
                 + "]";
     }
@@ -80,14 +76,6 @@ public class LeadingIndex implements Serializable {
 
     public void setIsin(final String isin) {
         this.isin = isin;
-    }
-
-    public String getWkn() {
-        return wkn;
-    }
-
-    public void setWkn(final String wkn) {
-        this.wkn = wkn;
     }
 
     public String getSearchKey() {

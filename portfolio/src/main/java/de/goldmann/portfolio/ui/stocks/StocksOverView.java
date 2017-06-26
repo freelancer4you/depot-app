@@ -6,17 +6,25 @@ import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 import de.goldmann.portfolio.domain.repository.IndustryStatistics;
+import de.goldmann.portfolio.domain.repository.LeadingIndexRepository;
+import de.goldmann.portfolio.domain.repository.StockDataRepository;
 import de.goldmann.portfolio.domain.repository.StockWithinDepotRepository;
+import de.goldmann.portfolio.services.YahooFinanceService;
 import de.goldmann.portfolio.ui.PieChart;
 import de.goldmann.portfolio.ui.PieChartData;
 
 @SuppressWarnings("serial")
 public class StocksOverView extends VerticalLayout {
 
-    public StocksOverView(final StockWithinDepotRepository stockWithinDepotRepository) {
+    public StocksOverView(final StockWithinDepotRepository stockWithinDepotRepository,
+            final StockDataRepository stockDataRepo,
+            final YahooFinanceService yahooFinanceService, 
+            final LeadingIndexRepository leadingIndexRepo) {
         super();
 
         final List<IndustryStatistics> industryStatistics = stockWithinDepotRepository.findIndustryCount();
@@ -33,6 +41,13 @@ public class StocksOverView extends VerticalLayout {
         final PieChart pieChart = new PieChart(chartData, "Aktuelle Verteilung");
         pieChart.setId("pieChart");
         addComponent(pieChart);
+
+        final Button newStockBtn = new Button("Neue Aktie/Etf");
+        newStockBtn.addClickListener(e ->
+        {
+            UI.getCurrent().addWindow(new StocksCreateDialog(stockDataRepo, yahooFinanceService, leadingIndexRepo));
+        });
+        addComponent(newStockBtn);
     }
 
     private String getChartData(final Set<PieChartData> chartDataSet) {

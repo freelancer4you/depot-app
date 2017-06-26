@@ -10,6 +10,8 @@ import com.vaadin.ui.VerticalLayout;
 import de.goldmann.portfolio.csv.CsvReader;
 import de.goldmann.portfolio.domain.StockType;
 import de.goldmann.portfolio.domain.repository.DepotRepository;
+import de.goldmann.portfolio.domain.repository.LeadingIndexRepository;
+import de.goldmann.portfolio.domain.repository.StockDataRepository;
 import de.goldmann.portfolio.domain.repository.StockWithinDepotRepository;
 import de.goldmann.portfolio.services.YahooFinanceService;
 import de.goldmann.portfolio.ui.events.EventDepotLayout;
@@ -35,26 +37,31 @@ public class DepotViewTabs extends TabSheet {
             final CsvReader csvReader,
             final EventsResolver eventsResolver,
             final DepotCallback depotCallback,
-            final DepotRepository depotRepo) {
+            final DepotRepository depotRepo,
+            final StockDataRepository stockDataRepo,
+            final LeadingIndexRepository leadingIndexRepo) {
         super();
         setSizeFull();
 
         aktienView = new StocksView(em,
-                                    stockWithinDepotRepository,
-                                    yahooFinanceService,
-                                    StockType.AKTIE,
-                                    mainUi,
-                                    csvReader);
+                stockWithinDepotRepository,
+                yahooFinanceService,
+                StockType.AKTIE,
+                mainUi,
+                csvReader,
+                stockDataRepo,
+                leadingIndexRepo);
         addTab(aktienView, "Aktien");
 
         etfsView = new StocksView(
-                                  em,
-                                  stockWithinDepotRepository,
-                                  yahooFinanceService,
-                                  StockType.ETF,
-                                  mainUi,
-                                  csvReader
-                );
+                em,
+                stockWithinDepotRepository,
+                yahooFinanceService,
+                StockType.ETF,
+                mainUi,
+                csvReader,
+                stockDataRepo,
+                leadingIndexRepo);
         addTab(etfsView, "ETFs");
 
         addTab(new EventDepotLayout(eventsResolver, depotCallback), "Alarme");
@@ -67,7 +74,7 @@ public class DepotViewTabs extends TabSheet {
         addTab(rebalancingView, REBALANCING_TAB_CAPTION);
 
         final RebalancingViewUpdater updater = new RebalancingViewUpdater(depotCallback, yahooFinanceService,
-                                                                          rebalancingView);
+                rebalancingView);
 
         final SelectedTabChangeListener changeListener = new SelectedTabChangeListener() {
 

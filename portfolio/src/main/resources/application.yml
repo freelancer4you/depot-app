@@ -11,7 +11,7 @@ spring:
       username: info@andre-goldmann.de
       port: 465
       from: info@depot-appp.de
-      subject: Depot-Monitor
+      subject: Stock-Monitor
       to: goldi23@freenet.de        
 logging:
   level:
@@ -33,13 +33,13 @@ spring:
     datasource:
       driver-class-name: com.mysql.jdbc.Driver
       # Prod cfk 
-      url:  jdbc:mysql://localhost:3306/depot
-      username: cfk
-      password:  ENC(0rLh75nem1Q2ZK74T6Vq+IZmyy/a3Gyj)
-      #Lokal root
       #url:  jdbc:mysql://localhost:3306/depot
-      #username: root
-      #password:  ENC(ueoCZdq3VIG/gGvuHpDj9IOj/N2nHU13)
+      #username: cfk
+      #password:  ENC(0rLh75nem1Q2ZK74T6Vq+IZmyy/a3Gyj)
+      #Lokal root
+      url:  jdbc:mysql://localhost:3306/depot
+      username: root
+      password:  ENC(ueoCZdq3VIG/gGvuHpDj9IOj/N2nHU13)
     jpa:
       database-platform: org.hibernate.dialect.MySQL5Dialect
       show-sql:  false

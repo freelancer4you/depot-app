@@ -13,13 +13,17 @@ import de.goldmann.portfolio.domain.Depot;
 import de.goldmann.portfolio.domain.repository.DepotRepository;
 import de.goldmann.portfolio.ui.depot.DepotView;
 import de.goldmann.portfolio.ui.depot.NewDepotView;
+import de.goldmann.portfolio.ui.management.EtfManagementView;
+import de.goldmann.portfolio.ui.management.StockManagementView;
 
 @Component
 public class MenuBar {
 
     private static final String   DEPOT_LIST_ID = "depotList";
+    private static final String   MANAGEMENT_LIST_ID = "managemenList";
+    
     private final DepotRepository depotRepository;
-    private Label                 menuBarEntries;
+    private Label                 depotListEntries;
     private CustomLayout          root;
 
     @Autowired
@@ -29,6 +33,43 @@ public class MenuBar {
 
     public void init(final CustomLayout root) {
         this.root = root;
+        depotListEntries(root);
+        managementListEntries(root);
+    }
+
+    private void managementListEntries(CustomLayout root2) {
+        final StringBuffer buffer = new StringBuffer();
+        buffer.append("<ul id=\"" + DEPOT_LIST_ID + "\" class=\"nav collapse \">");
+        buffer.append(
+                "<li>"
+                        + "<a href=\"#!"
+                        + StockManagementView.VIEW_NAME
+                        + "\" title=\"Neu\" data-toggle=\"\" class=\"no-submenu\">"
+                        + "<span class=\"item-text\">"
+                        + "Aktien"
+                        + "</span>"
+                        + "</a>"
+                        + "</li>"
+                );
+
+        buffer.append(
+                "<li>"
+                        + "<a href=\"#!"
+                        + EtfManagementView.VIEW_NAME
+                        + "\" title=\"Neu\" data-toggle=\"\" class=\"no-submenu\">"
+                        + "<span class=\"item-text\">"
+                        + "ETFs"
+                        + "</span>"
+                        + "</a>"
+                        + "</li>"
+                );
+        buffer.append("</ul>");
+
+        depotListEntries = new Label(buffer.toString(), ContentMode.HTML);
+        root.addComponent(depotListEntries, MANAGEMENT_LIST_ID);        
+    }
+
+    private void depotListEntries(final CustomLayout root) {
         final StringBuffer buffer = new StringBuffer();
         buffer.append("<ul id=\"" + DEPOT_LIST_ID + "\" class=\"nav collapse \">");
         buffer.append(
@@ -63,8 +104,8 @@ public class MenuBar {
         }
         buffer.append("</ul>");
 
-        menuBarEntries = new Label(buffer.toString(), ContentMode.HTML);
-        root.addComponent(menuBarEntries, DEPOT_LIST_ID);
+        depotListEntries = new Label(buffer.toString(), ContentMode.HTML);
+        root.addComponent(depotListEntries, DEPOT_LIST_ID);
     }
 
 }

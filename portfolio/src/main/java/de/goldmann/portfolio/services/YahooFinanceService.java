@@ -1,7 +1,9 @@
 package de.goldmann.portfolio.services;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 
+import yahoofinance.Stock;
 import yahoofinance.quotes.stock.StockDividend;
 
 public interface YahooFinanceService {
@@ -31,6 +33,8 @@ public interface YahooFinanceService {
     double getAmount(int anzahl, String symbol);
 
     StockDividend getDividend(String symbol);
+
+    Collection<Stock> finBySymbol(String upperCase);
 
     // double getTotalAmount(String[] symbols) throws IOException;
 }

@@ -14,6 +14,8 @@ import com.vaadin.ui.VerticalLayout;
 import de.goldmann.portfolio.csv.CsvReader;
 import de.goldmann.portfolio.domain.Depot;
 import de.goldmann.portfolio.domain.repository.DepotRepository;
+import de.goldmann.portfolio.domain.repository.LeadingIndexRepository;
+import de.goldmann.portfolio.domain.repository.StockDataRepository;
 import de.goldmann.portfolio.domain.repository.StockWithinDepotRepository;
 import de.goldmann.portfolio.services.AccountBookingReadingService;
 import de.goldmann.portfolio.services.YahooFinanceService;
@@ -38,7 +40,9 @@ public class DepotView extends VerticalLayout implements View {
             final UI mainUi,
             final CsvReader csvReader,
             final EventsResolver eventsResolver,
-            final AccountBookingReadingService accountBookingReadingService) {
+            final AccountBookingReadingService accountBookingReadingService,
+            final StockDataRepository stockDataRepo,
+            final LeadingIndexRepository leadingIndexRepo) {
         super();
         this.depotRepo = Objects.requireNonNull(depotRepo);
         Objects.requireNonNull(eventsResolver, "eventsResolver");
@@ -53,7 +57,9 @@ public class DepotView extends VerticalLayout implements View {
                 csvReader,
                 eventsResolver,
                 depotCallback,
-                depotRepo);
+                depotRepo,
+                stockDataRepo,
+                leadingIndexRepo);
         addComponent(depotViewTabs);
     }
 

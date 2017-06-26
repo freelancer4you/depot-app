@@ -1,0 +1,74 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Stock hinzuf&uuml;en</div>
+    <div class="panel-body">
+     
+    <a title="Yahoo API" target="_blank" href="https://finance.yahoo.com/lookup">Yahoo API</a>
+    <a title="Onvista" target="_blank" href="https://www.onvista.de">Onvista</a>
+ 
+        <form data-toggle="validator" class="form-horizontal" role="form">
+            <div class="form-group">
+		        <label class="col-xs-3 control-label">Name</label>
+		        <div class="col-xs-5">
+		            <input type="text" class="form-control" id="name" />
+		        </div>
+		    </div>
+        
+            <div class="form-group">
+                <label class="col-xs-3 control-label">Isin</label>
+                <div class="col-xs-5">
+                    <input type="text" class="form-control" id="isin" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-xs-3 control-label">Symbol</label>
+                <div class="col-xs-5">
+                    <input type="text" class="form-control" id="symbol" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-xs-3 control-label">W&auml;hrung</label>
+                <div class="col-xs-5">
+                    <select class="form-control" id="currency">
+                        <option value="1">EUR</option>
+                        <option value="2">USD</option>
+                    </select>
+                </div>
+            </div>
+            
+             <div class="form-group">
+		        <label class="col-xs-3 control-label">Index</label>
+		        <div class="col-xs-5 selectContainer">
+		            <select class="form-control" id="index">
+		                <option value="1">Dax</option>
+		                <option value="2">Dow Jones</option>
+		                <option value="3">Nasdaq</option>
+		                <option value="4">S&P 500</option>
+		            </select>
+		        </div>
+		    </div>
+		    
+		    <div class="form-group">
+                <label class="col-xs-3 control-label">Type</label>
+                <div class="col-xs-5 selectContainer">
+                    <div location="stocktype"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-xs-3 control-label">Branche</label>
+                <div class="col-xs-5 selectContainer">
+                    <div location="industries"></div>                    
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-offset-4 col-lg-8">
+                    <button type="button"  
+                       class="btn btn-sm btn-default"
+                       onclick="javascript:de.goldmann.portfolio.ui.stock.edit.save(document.getElementById('name').value, document.getElementById('isin').value, document.getElementById('symbol').value, document.getElementById('currency').value, document.getElementById('index').value);">Speichern</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

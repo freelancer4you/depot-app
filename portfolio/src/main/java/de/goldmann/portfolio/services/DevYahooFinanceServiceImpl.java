@@ -3,6 +3,7 @@ package de.goldmann.portfolio.services;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.Collection;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.context.annotation.Profile;
@@ -63,6 +64,12 @@ public class DevYahooFinanceServiceImpl extends AbstractYahooFinanceService {
         dividende.setAnnualYield(randomPrice());
         dividende.setAnnualYieldPercent(randomPrice());
         return dividende;
+    }
+
+    @Override
+    public Collection<Stock> finBySymbol(final String upperCase) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

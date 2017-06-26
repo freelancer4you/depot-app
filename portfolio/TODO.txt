@@ -6,3 +6,4 @@ Möglichkeit zur Anlage neuer StockData-Einträge
 Ermitteln der KGV(Kurs-Gewinn-Verhältnis (KGV) (englisch Price-Earnings-Ratio (PER) oder P/E Ratio)) einer Aktie
 Warnung wenn Aktie mehr als X-Prozent fällt
 Aktie: Sotheby (US8358981079) --> Indikator für Gesamtwirtschaft
+Überwachung Dax-Future (FDAXC1): wie ist der Stand um bzw. nach 22:00?

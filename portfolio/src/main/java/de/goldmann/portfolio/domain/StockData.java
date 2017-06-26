@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name = "stockdata")
 public class StockData implements Serializable {
 
-    private static final int ISIN_MAX_LENGTH = 12;
+    public static final int ISIN_MAX_LENGTH = 12;
 
     private static final long serialVersionUID = -8399894969039257669L;
 
@@ -26,9 +26,6 @@ public class StockData implements Serializable {
 
     @Column(nullable = false, unique = true)
     private String            name;
-
-    @Column(unique = true)
-    private String            wkn;
 
     @Column(nullable = false, name = "searchkey", unique = true)
     private String            searchKey;
@@ -48,11 +45,20 @@ public class StockData implements Serializable {
     @Enumerated(EnumType.STRING)
     private Industry			industry;
 
-    public LeadingIndex getLeadingIndex() {
-        return leadingIndex;
-    }
+    StockData() {}
 
-    public StockData() {}
+    public StockData(final String isin, final String name, final String searchKey,
+            final String currency, final LeadingIndex leadingIndex, final StockType stockType,
+            final Industry industry) {
+        super();
+        this.isin = isin;
+        this.name = name;
+        this.searchKey = searchKey;
+        this.currency = currency;
+        this.leadingIndex = leadingIndex;
+        this.stockType = stockType;
+        this.industry = industry;
+    }
 
     /**
      * Getter of currency
@@ -75,13 +81,6 @@ public class StockData implements Serializable {
         return name;
     }
 
-    /**
-     * Getter of wkn
-     */
-    public String getWkn() {
-        return wkn;
-    }
-
     public String getSearchKey() {
         return searchKey;
     }
@@ -92,6 +91,10 @@ public class StockData implements Serializable {
 
     public Industry getIndustry() {
         return industry;
+    }
+
+    public LeadingIndex getLeadingIndex() {
+        return leadingIndex;
     }
 
     @Override
@@ -129,7 +132,6 @@ public class StockData implements Serializable {
         return "StockData ["
                 + (isin != null ? "isin=" + isin + ", " : "")
                 + (name != null ? "name=" + name + ", " : "")
-                + (wkn != null ? "wkn=" + wkn + ", " : "")
                 + (searchKey != null ? "searchKey=" + searchKey + ", " : "")
                 + (leadingIndex != null ? "leadingIndex=" + leadingIndex + ", " : "")
                 + (stockType != null ? "stockType=" + stockType + ", " : "")
